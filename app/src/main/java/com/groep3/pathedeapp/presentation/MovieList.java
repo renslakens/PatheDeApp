@@ -95,12 +95,12 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-//            Meal currentMeal = mMovieData.get(getAdapterPosition());
+            Movie currentMovie = mMovieData.get(getAdapterPosition());
 //            Log.i(TAG, "User clicked on " + currentMeal.getName());
 //            Cook currenCook = mMovieData.get(getAdapterPosition()).getCook();
-//            Intent foodPage = new Intent(mContext, MealDetail.class);
+            Intent moviePage = new Intent(mContext, MovieDetail.class);
 //
-//            foodPage.putExtra("foodName", currentMeal.getName());
+            moviePage.putExtra("movieName", currentMovie.getName());
 //            foodPage.putExtra("foodPrice", currentMeal.getPrice());
 //            foodPage.putExtra("foodDescription", currentMeal.getDescription());
 //            foodPage.putExtra("foodDate", currentMeal.getDate());
@@ -114,7 +114,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
 //            foodPage.putExtra("foodVega", currentMeal.getVega());
 //            foodPage.putExtra("foodVegan", currentMeal.getVegan());
 //            Log.v(TAG, "Made new activity");
-//            mContext.startActivity(foodPage);
+            mContext.startActivity(moviePage);
 //            Log.v(TAG, "Started new activity");
 //
         }
