@@ -1,27 +1,29 @@
 package com.groep3.pathedeapp.domain;
 
-
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class Movie{
-    //on main screen
-    private final String name;
-
-
-    public Movie(String name) {
-        //main info
-        this.name = name;
-
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-
-
+public class Movie {
+    public boolean adult;
+    public String backdropPath;
+    public BelongsToCollection belongsToCollection;
+    public int budget;
+    public List<Genre> genres = null;
+    public String homepage;
+    public int id;
+    public String imdbId;
+    public String originalLanguage;
+    public String originalTitle;
+    public String overview;
+    public float popularity;
+    public String posterPath;
+    public List<ProductionCompany> productionCompanies = null;
+    public List<ProductionCountry> productionCountries = null;
+    public String releaseDate;
+    public int revenue;
+    public int runtime;
+    public List<SpokenLanguage> spokenLanguages = null;
+    public String status;
+    public String tagline;
+    public String title;
+    public boolean video;
+    public float voteAverage;
+    public int voteCount;
 }
