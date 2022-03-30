@@ -30,7 +30,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
     public MovieList(Context context, ArrayList<Movie> mealData) {
         this.mContext = context;
         this.mMovieData = mealData;
-        Log.d(TAG, "Made new meal list");
+        Log.d(TAG, "Made new movie list");
     }
 
 

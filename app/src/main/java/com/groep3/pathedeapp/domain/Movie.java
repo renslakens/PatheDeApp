@@ -31,9 +31,7 @@ public class Movie {
         //main info
         this.title = name;
         this.posterPath = posterPath;
-
     }
-
 
     public String getName() {
         return title;
