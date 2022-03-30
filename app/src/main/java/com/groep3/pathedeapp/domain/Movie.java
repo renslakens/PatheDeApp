@@ -27,14 +27,19 @@ public class Movie {
     public float voteAverage;
     public int voteCount;
 
-    public Movie(String name) {
+    public Movie(String name, String posterPath) {
         //main info
         this.title = name;
+        this.posterPath = posterPath;
 
     }
 
 
     public String getName() {
         return title;
+    }
+
+    public String getPosterPath(){
+        return posterPath;
     }
 }

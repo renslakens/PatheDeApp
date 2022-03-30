@@ -61,7 +61,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
 //        private TextView mTime;
 //        private TextView mPrice;
 //        private TextView mCity;
-//        private ImageView mImage;
+        private ImageView mImage;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -71,7 +71,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
             mName = itemView.findViewById(R.id.name);
 //            mTime = itemView.findViewById(R.id.time);
 //            mCity = itemView.findViewById(R.id.city);
-//            mImage = itemView.findViewById(R.id.image);
+            mImage = itemView.findViewById(R.id.image);
 //            mPrice = itemView.findViewById(R.id.price);
 
             itemView.setOnClickListener(this);
@@ -80,17 +80,18 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
         void bindTo(Movie currentMovie) {
             Log.d(TAG, "Putting data in itemViews");
             mName.setText(currentMovie.getName());
+
 //            mTime.setText(currentMeal.getDate());
 //            mCity.setText(currentCook.getCity());
 //            mPrice.setText(currentMeal.getPrice());
 //            Log.d(TAG, "Attempting to load image " + currentMovie.getImageResource());
-//            try {
-//                Picasso.with(mContext)
-//                        .load(Uri.parse(currentMovie.getImageResource()))
-//                        .into(mImage);
-//            }catch (Exception exception){
-//                Log.e(TAG, "Could not load image");
-//            }
+            try {
+                Picasso.with(mContext)
+                        .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + currentMovie.getPosterPath()))
+                        .into(mImage);
+            }catch (Exception exception){
+                Log.e(TAG, "Could not load image");
+            }
         }
 
         @Override

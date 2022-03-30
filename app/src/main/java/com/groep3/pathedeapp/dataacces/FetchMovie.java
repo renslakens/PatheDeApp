@@ -69,7 +69,9 @@ public class FetchMovie extends AsyncTask<String, Void, String> {
 //                        objcook.getString("phoneNumber"),
 //                        objcook.getString("emailAdress"));
 
-                mMovies.add(new Movie(movieInfo.getString("title")));
+                mMovies.add(new Movie(movieInfo.getString("title"), movieInfo.getString("poster_path")));
+
+
 //
 //                //make meal
 //                mMovies.add(new Meal(

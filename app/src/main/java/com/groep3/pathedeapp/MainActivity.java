@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
 
         //bepaald hoeveel items naast elkaar worden laten zien op basis van welke rotatie het scherm heeft
-        int gridColumnCount = 2;
+        int gridColumnCount = 1;
         //set layout manager
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
         Log.i(TAG, "grid column count: " + gridColumnCount);
