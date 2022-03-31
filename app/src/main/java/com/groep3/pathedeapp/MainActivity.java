@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.groep3.pathedeapp.dataacces.FetchMovie;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private FetchMovie mMovie = new FetchMovie(this);
     private RecyclerView.Adapter mAdapter = mMovie.getAdapter();
@@ -58,6 +58,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             Log.i(TAG, "executing meal");
         }
 
+        Spinner genreSpinner = (Spinner) findViewById(R.id.genre_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_test, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genreSpinner.setAdapter(adapter);
+
+
+        Spinner ratingSpinner = (Spinner) findViewById(R.id.rating_spinner);
+
+        ratingSpinner.setAdapter(adapter);
     }
 
 
