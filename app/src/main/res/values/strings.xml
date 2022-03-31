@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PatheDeApp</string>
+    <string-array name="spinner_test">
+        <item>a</item>
+        <item>b</item>
+        <item>c</item>
+        <item>d</item>
+    </string-array>
 </resources>

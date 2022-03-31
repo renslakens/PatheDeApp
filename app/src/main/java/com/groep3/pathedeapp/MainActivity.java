@@ -10,14 +10,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.groep3.pathedeapp.dataacces.FetchMovie;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private FetchMovie mMovie = new FetchMovie(this);
     private RecyclerView.Adapter mAdapter = mMovie.getAdapter();
-//    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private final String TAG = "MainActivity";
 
@@ -30,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.movie_list);
-//        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
-//        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
 
         // maakt recyclerview
         mRecyclerView = findViewById(R.id.recyclerView);
@@ -54,5 +57,16 @@ public class MainActivity extends AppCompatActivity {
             mMovie.execute();
             Log.i(TAG, "executing meal");
         }
+
+    }
+
+
+    @Override
+    public void onRefresh() {
+        Toast.makeText(this,
+                "kan nog niet reloaden",
+                Toast.LENGTH_SHORT)
+                .show();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
