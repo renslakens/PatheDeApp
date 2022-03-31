@@ -3,8 +3,11 @@ package com.groep3.pathedeapp.presentation;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -34,6 +37,7 @@ public class MovieDetail extends AppCompatActivity {
         Log.i(TAG, "Creating views");
         TextView name = (TextView) findViewById(R.id.detail_movieName);
         ImageView image = (ImageView) findViewById(R.id.detail_movie_cover);
+        ImageButton shareButton = (ImageButton) findViewById(R.id.detail_share_button);
 
         //put view values on screen
         Log.i(TAG, "Giving views data");
@@ -43,6 +47,16 @@ public class MovieDetail extends AppCompatActivity {
         Picasso.with(this)
                 .load("https://image.tmdb.org/t/p/w500/" + getIntent().getStringExtra("movie_cover"))
                 .into(image);
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),
+                        "button moment",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
 
     }
 
