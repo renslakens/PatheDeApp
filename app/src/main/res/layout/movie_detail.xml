@@ -13,41 +13,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/detail_movie_cover"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@mipmap/ic_launcher"
-            />
-
-            <TextView
-                android:id="@+id/movieName"
+            <ImageView
+                android:id="@+id/detail_movie_cover"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:layout_constraintHorizontal_bias="0"
+
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detail_movieName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:text="film"
                 android:textSize="28sp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detail_movie_cover" />
-
-<!--        <VideoView-->
-<!--            android:id="@+id/videoView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content" />-->
 
             <TextView
                 android:id="@+id/detail_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="rating"
                 android:layout_margin="8dp"
+                android:text="rating"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@+id/detail_movie_cover"
@@ -57,10 +51,10 @@
                 android:id="@+id/detail_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="genre"
                 android:layout_margin="8dp"
-                app:layout_constraintHorizontal_bias="0"
+                android:text="genre"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@+id/detail_movie_cover"
                 app:layout_constraintTop_toBottomOf="@+id/detail_rating" />
 
@@ -69,9 +63,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:layout_constraintHorizontal_bias="0"
                 android:text="length"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@+id/detail_movie_cover"
                 app:layout_constraintTop_toBottomOf="@+id/detail_genre" />
 
@@ -84,15 +78,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movieName" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_movieName" />
 
             <TextView
                 android:id="@+id/detail_reviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:layout_constraintHorizontal_bias="0"
                 android:text="reviews (moet later recycler view worden)"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_description" />
         </androidx.constraintlayout.widget.ConstraintLayout>
