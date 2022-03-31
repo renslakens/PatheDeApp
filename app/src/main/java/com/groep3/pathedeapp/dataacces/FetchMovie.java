@@ -48,46 +48,9 @@ public class FetchMovie extends AsyncTask<String, Void, String> {
             for (int i = 0; i < mealArray.length(); i++) {
                 JSONObject movieInfo = mealArray.getJSONObject(i);
 
-                //get date
-//                String date = mealInfo.getString("dateTime").toString();
-//                String serveDate = null;
-//                try {
-//                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//                    Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-//                    serveDate = String.valueOf(dateFormat.format(tempDate));
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                //make cook
-//                JSONObject objcook = new JSONObject(mealInfo.getString("cook"));
-//                String cookNameString = objcook.getString("firstName")+ " " + objcook.getString("lastName");
-//                Cook cook = new Cook(
-//                        cookNameString,
-//                        objcook.getString("city"),
-//                        objcook.getString("street"),
-//                        objcook.getString("phoneNumber"),
-//                        objcook.getString("emailAdress"));
 
                 mMovies.add(new Movie(movieInfo.getString("title"), movieInfo.getString("poster_path")));
 
-
-//
-//                //make meal
-//                mMovies.add(new Meal(
-//                        mealInfo.getString("name"),
-//                        mealInfo.getString("description"),
-//                        mealInfo.getString("price"),
-//                        mealInfo.getString("imageUrl"),
-//                        mealInfo.getInt("id"),
-//                        mealInfo.getBoolean("isVega"),
-//                        mealInfo.getBoolean("isVegan"),
-//                        serveDate,
-//                        mealInfo.getString("allergenes"),
-//                        cook,
-//                        mealInfo.getBoolean("isToTakeHome"),
-//                        mealInfo.getBoolean("isActive")));
-//                Log.d(TAG, "Created meal" + mealInfo.getInt("id"));
             }
         } catch (JSONException e) {
             e.printStackTrace();

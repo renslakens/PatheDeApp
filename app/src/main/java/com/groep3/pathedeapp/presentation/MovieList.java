@@ -58,9 +58,6 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mName;
-//        private TextView mTime;
-//        private TextView mPrice;
-//        private TextView mCity;
         private ImageView mImage;
 
         ViewHolder(View itemView) {
@@ -69,22 +66,13 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
             // Initialize the views
             Log.i(TAG, "Initializing itemViews");
             mName = itemView.findViewById(R.id.name);
-//            mTime = itemView.findViewById(R.id.time);
-//            mCity = itemView.findViewById(R.id.city);
             mImage = itemView.findViewById(R.id.image);
-//            mPrice = itemView.findViewById(R.id.price);
-
             itemView.setOnClickListener(this);
         }
 
         void bindTo(Movie currentMovie) {
             Log.d(TAG, "Putting data in itemViews");
             mName.setText(currentMovie.getName());
-
-//            mTime.setText(currentMeal.getDate());
-//            mCity.setText(currentCook.getCity());
-//            mPrice.setText(currentMeal.getPrice());
-//            Log.d(TAG, "Attempting to load image " + currentMovie.getImageResource());
             try {
                 Picasso.with(mContext)
                         .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + currentMovie.getPosterPath()))
@@ -97,27 +85,14 @@ public class MovieList extends RecyclerView.Adapter<MovieList.ViewHolder> {
         @Override
         public void onClick(View view) {
             Movie currentMovie = mMovieData.get(getAdapterPosition());
-//            Log.i(TAG, "User clicked on " + currentMeal.getName());
-//            Cook currenCook = mMovieData.get(getAdapterPosition()).getCook();
+
             Intent moviePage = new Intent(mContext, MovieDetail.class);
-//
             moviePage.putExtra("movieName", currentMovie.getName());
-//            foodPage.putExtra("foodPrice", currentMeal.getPrice());
-//            foodPage.putExtra("foodDescription", currentMeal.getDescription());
-//            foodPage.putExtra("foodDate", currentMeal.getDate());
-//            foodPage.putExtra("foodAllergies", currentMeal.getAllergies());
-//            foodPage.putExtra("foodCook", currenCook.getName());
-//            foodPage.putExtra("foodCity", currenCook.getCity());
-//            foodPage.putExtra("foodStreet", currenCook.getStreet());
-//            foodPage.putExtra("foodEmail", currenCook.getEmail());
-//            foodPage.putExtra("foodPhone", currenCook.getPhoneNumber());
-//            foodPage.putExtra("image_resource", currentMeal.getImageResource());;
-//            foodPage.putExtra("foodVega", currentMeal.getVega());
-//            foodPage.putExtra("foodVegan", currentMeal.getVegan());
-//            Log.v(TAG, "Made new activity");
+            moviePage.putExtra("movie_cover", currentMovie.getPosterPath());;
+
+            Log.v(TAG, "Made new activity");
             mContext.startActivity(moviePage);
-//            Log.v(TAG, "Started new activity");
-//
+            Log.v(TAG, "Started new activity");
         }
     }
 }
