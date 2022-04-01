@@ -34,12 +34,16 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
     static class MovieViewHolder extends RecyclerView.ViewHolder{
         public final TextView movieTitle;
         public final ImageView imageView;
+        public final TextView movieDate;
+        public final TextView movieScore;
         final MovieList mAdapter;
 
         public MovieViewHolder(View itemView, MovieList adapter) {
             super(itemView);
             movieTitle = itemView.findViewById(R.id.name);
             imageView = itemView.findViewById(R.id.image);
+            movieDate = itemView.findViewById(R.id.date);
+            movieScore = itemView.findViewById(R.id.rating);
 
             this.mAdapter = adapter;
         }
@@ -74,7 +78,10 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
                 Intent moviePage = new Intent(context, MovieDetail.class);
                 moviePage.putExtra("movieName", mCurrent.getTitle());
                 moviePage.putExtra("movie_cover", mCurrent.getPosterPath());;
-
+                moviePage.putExtra("movieId", mCurrent.getId().toString());
+                moviePage.putExtra("movieRating", mCurrent.getVoteAverage().toString());
+                moviePage.putExtra("movieGenre", mCurrent.getGenreIds().toString());
+                moviePage.putExtra("movieDescription", mCurrent.getOverview());
                 context.startActivity(moviePage);
 
             }
@@ -82,6 +89,8 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
 
 
         holder.movieTitle.setText(mCurrent.getTitle());
+        holder.movieScore.setText(mCurrent.getVoteAverage().toString());
+        holder.movieDate.setText(mCurrent.getReleaseDate());
         Picasso.with(context)
                 .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + mCurrent.getPosterPath()))
                 .into(holder.imageView);
