@@ -14,10 +14,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.groep3.pathedeapp.R;
+
 import com.squareup.picasso.Picasso;
+
+
 
 public class MovieDetail extends AppCompatActivity {
     private String TAG = "MovieDetail";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

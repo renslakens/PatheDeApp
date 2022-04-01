@@ -5,21 +5,30 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.groep3.pathedeapp.dataacces.FetchMovie;
+import com.groep3.pathedeapp.dataacces.ApiClient;
+import com.groep3.pathedeapp.dataacces.ApiInterface;
+import com.groep3.pathedeapp.domain.LoadedMovies;
+import com.groep3.pathedeapp.domain.Movie;
+import com.groep3.pathedeapp.presentation.MovieList;
+
+
+import java.util.LinkedList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    private FetchMovie mMovie = new FetchMovie(this);
-    private RecyclerView.Adapter mAdapter = mMovie.getAdapter();
+    private final LinkedList<Movie> mMovieList = new LinkedList<>();
+    Integer pageNumber = 1;
+
+    private MovieList mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private final String TAG = "MainActivity";
@@ -31,32 +40,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.d(TAG, "-------");
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.movie_list);
+        setAdapter();
+        getAllMovies();
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        // maakt recyclerview
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
 
-        //bepaald hoeveel items naast elkaar worden laten zien op basis van welke rotatie het scherm heeft
-        int gridColumnCount = 1;
-        //set layout manager
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
-        Log.i(TAG, "grid column count: " + gridColumnCount);
-        mRecyclerView.setAdapter(mAdapter);
+                if (!recyclerView.canScrollVertically(1)) {
+                    pageNumber++;
+                    getAllMovies();
+                }
+            }
+        });
 
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = null;
-        if (connMgr != null) {
-            networkInfo = connMgr.getActiveNetworkInfo();
-            Log.w(TAG, "No internet connection");
-        }
 
-        if (networkInfo != null && networkInfo.isConnected()) {
-            mMovie.execute();
-            Log.i(TAG, "executing meal");
-        }
 
         Spinner genreSpinner = (Spinner) findViewById(R.id.genre_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -73,10 +76,41 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
-        Toast.makeText(this,
-                "kan nog niet reloaden",
-                Toast.LENGTH_SHORT)
-                .show();
+
+        setAdapter();
+        getAllMovies();
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void setAdapter() {
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mAdapter = new MovieList(this, mMovieList);
+        mRecyclerView.setAdapter(mAdapter);
+        int gridColumnCount = 1;
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
+    }
+
+
+    private void getAllMovies() {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<LoadedMovies> call = apiInterface.getMovies("bce3e84f67721f9e61473a5c397a0bf1", pageNumber);
+
+        call.enqueue(new Callback<LoadedMovies>() {
+            @Override
+            public void onResponse(Call<LoadedMovies> call, Response<LoadedMovies> response) {
+                LoadedMovies movies = response.body();
+                mMovieList.addAll(movies.getResults());
+                Log.d("MovieListMovies", mMovieList.toString());
+                mAdapter.setMovieList(mMovieList);
+            }
+
+            @Override
+            public void onFailure(Call<LoadedMovies> call, Throwable t) {
+                Log.e("MainActivity", t.toString());
+            }
+        });
+
     }
 }
