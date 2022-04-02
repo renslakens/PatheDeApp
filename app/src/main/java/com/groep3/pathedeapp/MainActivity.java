@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void getAllMovies() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<LoadedMovies> call = apiInterface.getMovies("bce3e84f67721f9e61473a5c397a0bf1", pageNumber);
+        Call<LoadedMovies> call = apiInterface.getMovies("11db3143a380ada0de96fe9028cbc905", pageNumber);
 
         call.enqueue(new Callback<LoadedMovies>() {
             @Override

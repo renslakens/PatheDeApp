@@ -59,7 +59,7 @@ public class MovieDetail extends AppCompatActivity {
         //
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<Movie> call = apiInterface.getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")),  "bce3e84f67721f9e61473a5c397a0bf1");
+        Call<Movie> call = apiInterface.getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")),  "11db3143a380ada0de96fe9028cbc905");
 
         call.enqueue(new Callback<Movie>() {
                          @Override
