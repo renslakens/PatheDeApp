@@ -12,4 +12,9 @@ public interface ApiInterface {
             @Query("api_key") String apiKey,
             @Query("page") int page
     );
+
+    @GET("authentication/token/new")
+    Call<AuthenticateUser> authenticate(
+
+    );
 }
