@@ -15,13 +15,14 @@ public interface ApiInterface {
             @Query("page") int page
     );
 
-    @GET("authentication/token/new")
-    Call<AuthenticateUser> authenticate(
-
-    );
     @GET("movie/{movie_id}")
     Call<Movie> getMovie(
 
             @Path("movie_id") int id,
             @Query("api_key") String apiKey);
+
+    @GET("authentication/token/new")
+    Call<AuthenticateUser> authenticate(
+
+    );
 }
