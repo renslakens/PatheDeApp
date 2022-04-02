@@ -50,6 +50,9 @@ public class Movie {
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
+    @SerializedName("runtime")
+    @Expose
+    private int runtime;
 
     public String getPosterPath() {
         return posterPath;
@@ -106,6 +109,8 @@ public class Movie {
     public Double getVoteAverage() {
         return voteAverage;
     }
+
+    public Integer getRuntime(){return runtime;}
 
     @Override
     public String toString() {

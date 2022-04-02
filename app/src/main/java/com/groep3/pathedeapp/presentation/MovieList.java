@@ -76,12 +76,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
             public void onClick(View view) {
 
                 Intent moviePage = new Intent(context, MovieDetail.class);
-                moviePage.putExtra("movieName", mCurrent.getTitle());
-                moviePage.putExtra("movie_cover", mCurrent.getPosterPath());;
                 moviePage.putExtra("movieId", mCurrent.getId().toString());
-                moviePage.putExtra("movieRating", mCurrent.getVoteAverage().toString());
-                moviePage.putExtra("movieGenre", mCurrent.getGenreIds().toString());
-                moviePage.putExtra("movieDescription", mCurrent.getOverview());
                 context.startActivity(moviePage);
 
             }
