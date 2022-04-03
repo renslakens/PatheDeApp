@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
+    //Filteren op populariteit, release date, revenue, primary release date, original title, vote average en vote count
     private class sortListener implements android.widget.AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -165,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         }
     }
-
 
     private class modeListener implements android.widget.AdapterView.OnItemSelectedListener {
         @Override
