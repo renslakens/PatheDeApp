@@ -31,6 +31,7 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
+    //Search movie
     @GET("search/movie")
     Call<LoadedMovies> searchMovies(
             @Query("api_key") String apiKey,
