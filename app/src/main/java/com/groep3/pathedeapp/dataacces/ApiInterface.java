@@ -39,7 +39,6 @@ public interface ApiInterface {
             @Query("page") int page
     );
 
-
     //Get request_token
     @GET("authentication/token/new")
     Call<UserRequestToken> createNewSession(
