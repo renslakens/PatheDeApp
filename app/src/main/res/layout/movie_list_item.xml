@@ -25,7 +25,8 @@
                 android:layout_height="400dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/image_placeholder"
+/>
 
 
             <TextView

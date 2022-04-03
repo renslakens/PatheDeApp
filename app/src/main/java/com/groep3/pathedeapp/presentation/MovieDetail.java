@@ -32,7 +32,6 @@ public class MovieDetail extends AppCompatActivity {
     private Movie movie;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,45 +58,33 @@ public class MovieDetail extends AppCompatActivity {
         //
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<Movie> call = apiInterface.getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")),  "11db3143a380ada0de96fe9028cbc905");
+        Call<Movie> call = apiInterface.getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")), "11db3143a380ada0de96fe9028cbc905");
 
         call.enqueue(new Callback<Movie>() {
-                         @Override
-                         public void onResponse(Call<Movie> call, Response<Movie> response) {
-                             movie = response.body();
-                             name.setText(movie.getTitle());
-                             score.setText(movie.getVoteAverage().toString());
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                movie = response.body();
+                name.setText(movie.getTitle());
+                score.setText(movie.getVoteAverage().toString());
 //                             genre.setText( movie.getGenreIds().toString());
-                             description.setText(movie.getOverview());
-                             length.setText(movie.getRuntime().toString());
-                             Picasso.with(getApplicationContext())
-                                     .load("https://image.tmdb.org/t/p/w500/" + movie.getPosterPath())
-                                     .into(image);
+                description.setText(movie.getOverview());
+                length.setText(movie.getRuntime().toString());
+                if (movie.getPosterPath() != null) {
+                    Picasso.with(getApplicationContext())
+                            .load("https://image.tmdb.org/t/p/w500/" + movie.getPosterPath())
+                            .into(image);
+                }
 
-                             Log.d("test", movie.getTitle());
-                             Log.d("test", response.body().toString());
-                             Log.d("test", response.toString());
-                         }
+                Log.d("test", movie.getTitle());
+                Log.d("test", response.body().toString());
+                Log.d("test", response.toString());
+            }
 
-                         @Override
-                         public void onFailure(Call<Movie> call, Throwable t) {
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
 
-                         }
-                     });
-            //
-
-
-
-        //put view values on screen
-        Log.i(TAG, "Giving views data");
-//        getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")));
-//        name.setText(movie.getTitle());
-//        name.setText(getIntent().getStringExtra("movieName"));
-//        score.setText(getIntent().getStringExtra("movieRating"));
-//        genre.setText(getIntent().getStringExtra("movieGenre"));
-//        description.setText(getIntent().getStringExtra("movieDescription"));
-
-
+            }
+        });
 
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,40 +110,5 @@ public class MovieDetail extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void getMovie(int movieId) {
-//        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-//
-//        Call<Movie> call = apiInterface.getMovie(  "bce3e84f67721f9e61473a5c397a0bf1");
-//
-//        call.enqueue(new Callback<Movie>() {
-//            @Override
-//            public void onResponse(Call<Movie> call, Response<Movie> response) {
-//                movie = response.body();
-////                name.setText(movie.getTitle());
-//                Log.d("test", movie.getTitle());
-//                Log.d("test", response.body().toString());
-//                Log.d("test", response.toString());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Movie> call, Throwable t) {
-//
-//            }
-//
-////            @Override
-////            public void onResponse(Call<LoadedMovies> call, Response<LoadedMovies> response) {
-////                movie = response.body();
-////                LoadedMovies movies = response.body();
-////                mMovieList.addAll(movies.getResults());
-////                Log.d("MovieListMovies", mMovieList.toString());
-////                mAdapter.setMovieList(mMovieList);
-////            }
-////
-////            @Override
-////            public void onFailure(Call<LoadedMovies> call, Throwable t) {
-////                Log.e("MainActivity", t.toString());
-////            }
-//        });
-
-    }
+}
 

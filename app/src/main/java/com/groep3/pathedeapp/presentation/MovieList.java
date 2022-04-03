@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.domain.Movie;
 import com.squareup.picasso.Picasso;
@@ -86,10 +87,13 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
         holder.movieTitle.setText(mCurrent.getTitle());
         holder.movieScore.setText(mCurrent.getVoteAverage().toString());
         holder.movieDate.setText(mCurrent.getReleaseDate());
-        Picasso.with(context)
-                .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + mCurrent.getPosterPath()))
-                .into(holder.imageView);
-
+        if (mCurrent.getPosterPath() != null) {
+            Picasso.with(context)
+                    .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + mCurrent.getPosterPath()))
+                    .into(holder.imageView);
+        }else {
+            Picasso.with(context).load(R.drawable.image_placeholder).into(holder.imageView);
+        }
     }
 
 
