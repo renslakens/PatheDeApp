@@ -2,6 +2,8 @@ package com.groep3.pathedeapp.dataacces;
 
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
+import com.groep3.pathedeapp.domain.PostUser;
+import com.groep3.pathedeapp.domain.UserRequestToken;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
