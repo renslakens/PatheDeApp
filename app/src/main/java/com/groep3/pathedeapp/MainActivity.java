@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private Spinner genreSpinner;
     private Spinner ratingSpinner;
 
+    private String apiKey = "11db3143a380ada0de96fe9028cbc905";
+
     private SearchView editsearch;
 
     private final LinkedList<Movie> mMovieList = new LinkedList<>();
@@ -55,11 +57,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private final String TAG = "MainActivity";
 
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-//
-//    //Username and password for login()
-//    EditText username = (EditText) findViewById(R.id.username);
-//    EditText password = (EditText) findViewById(R.id.password);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,21 +88,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 }
             }
         });
-
-        Call<UserRequestToken> call = apiInterface.createNewSession("11db3143a380ada0de96fe9028cbc905");
-
-        call.enqueue(new Callback<UserRequestToken>() {
-
-                         @Override
-                         public void onResponse(Call<UserRequestToken> call, Response<UserRequestToken> response) {
-
-                         }
-
-                         @Override
-                         public void onFailure(Call<UserRequestToken> call, Throwable t) {
-
-                         }
-        }
 
         genreSpinner = (Spinner) findViewById(R.id.genre_spinner);
         ArrayAdapter<CharSequence> sortByAdapter = ArrayAdapter.createFromResource(this,
@@ -160,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void getAllMovies(String sortBy) {
         mSwipeRefreshLayout.setRefreshing(true);
 
-        Call<LoadedMovies> call = apiInterface.getMovies("11db3143a380ada0de96fe9028cbc905", pageNumber, sortBy);
+        Call<LoadedMovies> call = apiInterface.getMovies(apiKey, pageNumber, sortBy);
 
         call.enqueue(new Callback<LoadedMovies>() {
             @Override
@@ -185,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         currentQuery = query;
         mSwipeRefreshLayout.setRefreshing(true);
 
-        Call<LoadedMovies> call = apiInterface.searchMovies("11db3143a380ada0de96fe9028cbc905", query, pageNumber);
+        Call<LoadedMovies> call = apiInterface.searchMovies(apiKey, query, pageNumber);
 
         call.enqueue(new Callback<LoadedMovies>() {
             @Override
@@ -203,12 +185,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Log.e("MainActivity", t.toString());
             }
         });
-
-    }
-
-
-    //Login with username + password
-    public void login(View view) {
 
     }
 

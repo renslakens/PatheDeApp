@@ -58,6 +58,7 @@
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="register"
             android:text="@string/button_register" />
 
         <Button
@@ -66,6 +67,7 @@
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Button"
             android:layout_marginVertical="50dp"
+            android:onClick="guestLogin"
             android:text="@string/enter_as_guest_button"
             android:textAllCaps="false"
             android:textSize="14sp" />
