@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 super.onScrollStateChanged(recyclerView, newState);
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    if (currentQuery.isEmpty()) {
+                    if (currentQuery == null) {
                         pageNumber++;
                         call = sortBy + descending;
                         getAllMovies(call);
@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         if (s.isEmpty()) {
             call = sortBy + descending;
             mMovieList.clear();
+            s = null;
             getAllMovies(call);
             genreSpinner.setVisibility(mRecyclerView.VISIBLE);
             ratingSpinner.setVisibility(mRecyclerView.VISIBLE);
