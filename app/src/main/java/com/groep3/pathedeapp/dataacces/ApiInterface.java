@@ -1,8 +1,10 @@
 package com.groep3.pathedeapp.dataacces;
 
 import com.groep3.pathedeapp.domain.LoadedMovies;
+import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.PostUser;
+import com.groep3.pathedeapp.domain.Review;
 import com.groep3.pathedeapp.domain.UserRequestToken;
 
 import retrofit2.Call;
@@ -28,6 +30,15 @@ public interface ApiInterface {
             @Path("movie_id") int id,
             @Query("api_key") String apiKey
     );
+
+    //Get movie reviews
+    @GET("movie/{movie_id}/reviews")
+    Call<LoadedReviews> getReview(
+            @Path("movie_id") int id,
+            @Query("api_key") String apiKey,
+            @Query("page") int page
+    );
+
 
     //Get request_token
     @GET("authentication/token/new")

@@ -13,14 +13,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.groep3.pathedeapp.R;
 
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
+import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
+import com.groep3.pathedeapp.domain.Review;
 import com.squareup.picasso.Picasso;
+
+import java.util.LinkedList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,12 +36,31 @@ import retrofit2.Response;
 public class MovieDetail extends AppCompatActivity {
     private String TAG = "MovieDetail";
     private Movie movie;
+    private final LinkedList<Review> mReviewList = new LinkedList<>();
+    private RecyclerView mRecyclerView;
+    private ReviewList mAdapter;
+    private int pageNumber = 1;
+    private int totalPages = 1;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_detail);
+        setAdapter();
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1) && totalPages != pageNumber) {
+                    pageNumber++;
+
+                    getAllReviews();
+                }
+            }
+        });
 
 
         // calling the action bar
@@ -86,6 +111,10 @@ public class MovieDetail extends AppCompatActivity {
             }
         });
 
+        getAllReviews();
+
+
+
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +137,42 @@ public class MovieDetail extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setAdapter() {
+        mRecyclerView = findViewById(R.id.reviewView);
+        mAdapter = new ReviewList(this, mReviewList);
+        mRecyclerView.setAdapter(mAdapter);
+        int gridColumnCount = 1;
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
+    }
+
+    private void getAllReviews(){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<LoadedReviews> reviewCall = apiInterface.getReview(Integer.parseInt(getIntent().getStringExtra("movieId")), "11db3143a380ada0de96fe9028cbc905", pageNumber);
+
+        reviewCall.enqueue(new Callback<LoadedReviews>() {
+            @Override
+            public void onResponse(Call<LoadedReviews> call, Response<LoadedReviews> response) {
+                LoadedReviews reviews = response.body();
+                totalPages = reviews.getTotalPages();
+                mReviewList.addAll(reviews.getResults());
+                Log.d("reviewListreviews", response.toString());
+
+                for (int i = 0; i < mReviewList.size(); i++) {
+                    Review review = mReviewList.get(i);
+
+                    Log.d("test", review.getAuthor());
+                }
+                setAdapter();
+            }
+
+            @Override
+            public void onFailure(Call<LoadedReviews> call, Throwable t) {
+
+            }
+        });
     }
 
 }
