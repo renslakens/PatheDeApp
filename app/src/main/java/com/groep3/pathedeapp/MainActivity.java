@@ -127,6 +127,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
+    //Login with username + password
+    public void login(View view) {
+
+    }
+
     //Filteren op populariteit, release date, revenue, primary release date, original title, vote average en vote count
     private class sortListener implements android.widget.AdapterView.OnItemSelectedListener {
         @Override

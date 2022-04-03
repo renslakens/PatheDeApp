@@ -8,6 +8,7 @@
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="Username" />
+            android:hint="@string/hint_username" />
 
         <EditText
             android:id="@+id/password"
@@ -35,14 +36,15 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="Password" />
+            android:hint="@string/hint_password" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Login" />
+            android:onClick="login"
+            android:text="@string/button_login" />
 
         <View
             android:id="@+id/divider"
@@ -56,14 +58,15 @@
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="@string/button_register" />
 
         <Button
             android:id="@+id/guestButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Enter as guest"
+            style="@style/TextAppearance.AppCompat.Button"
+            android:layout_marginVertical="50dp"
+            android:text="@string/enter_as_guest_button"
             android:textAllCaps="false"
             android:textSize="14sp" />
 
