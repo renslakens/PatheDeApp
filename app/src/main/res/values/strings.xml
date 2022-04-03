@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">PatheDeApp</string>
-    <string-array name="spinner_test">
-        <item>a</item>
-        <item>b</item>
-        <item>c</item>
-        <item>d</item>
+    <string-array name="spinner_sort">
+        <item>popularity</item>
+        <item>release date</item>
+        <item>revenue</item>
+        <item>primary release date</item>
+        <item>original title</item>
+        <item>vote average</item>
+        <item>vote count</item>
+    </string-array>
+    <string-array name="spinner_mode">
+        <item>descending</item>
+        <item>ascending</item>
     </string-array>
 </resources>

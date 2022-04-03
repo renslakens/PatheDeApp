@@ -16,7 +16,8 @@ public interface ApiInterface {
     @GET("discover/movie")
     Call<LoadedMovies> getMovies(
             @Query("api_key") String apiKey,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("sort_by") String sort
     );
 
     //Get movie by ID
