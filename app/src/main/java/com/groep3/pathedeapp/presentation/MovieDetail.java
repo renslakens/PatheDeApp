@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,7 +31,6 @@ import retrofit2.Response;
 public class MovieDetail extends AppCompatActivity {
     private String TAG = "MovieDetail";
     private Movie movie;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

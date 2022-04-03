@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.groep3.pathedeapp.dataacces.ApiClient;
@@ -38,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private RecyclerView mRecyclerView;
     private final String TAG = "MainActivity";
 
+    ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+    //Username and password for login()
+    EditText username = (EditText) findViewById(R.id.username);
+    EditText password = (EditText) findViewById(R.id.password);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         });
 
+        apiInterface.createNewSession("11db3143a380ada0de96fe9028cbc905");
 
         Spinner genreSpinner = (Spinner) findViewById(R.id.genre_spinner);
         ArrayAdapter<CharSequence> sortByAdapter = ArrayAdapter.createFromResource(this,
@@ -103,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
     private void getAllMovies(String sortBy) {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         mSwipeRefreshLayout.setRefreshing(true);
 
         Call<LoadedMovies> call = apiInterface.getMovies("11db3143a380ada0de96fe9028cbc905", pageNumber, sortBy);
