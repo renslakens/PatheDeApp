@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private Spinner genreSpinner;
     private Spinner ratingSpinner;
 
-    private String apiKey = "11db3143a380ada0de96fe9028cbc905";
+    private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
 
     private SearchView editsearch;
 
