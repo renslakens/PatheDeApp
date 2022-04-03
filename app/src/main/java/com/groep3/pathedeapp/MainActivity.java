@@ -22,6 +22,7 @@ import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
+import com.groep3.pathedeapp.domain.UserRequestToken;
 import com.groep3.pathedeapp.presentation.MovieDetail;
 import com.groep3.pathedeapp.presentation.MovieList;
 
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private final String TAG = "MainActivity";
 
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
 //
 //    //Username and password for login()
 //    EditText username = (EditText) findViewById(R.id.username);
@@ -90,7 +92,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         });
 
-        apiInterface.createNewSession("11db3143a380ada0de96fe9028cbc905");
+        Call<UserRequestToken> call = apiInterface.createNewSession("11db3143a380ada0de96fe9028cbc905");
+
+        call.enqueue(new Callback<UserRequestToken>() {
+
+                         @Override
+                         public void onResponse(Call<UserRequestToken> call, Response<UserRequestToken> response) {
+
+                         }
+
+                         @Override
+                         public void onFailure(Call<UserRequestToken> call, Throwable t) {
+
+                         }
+        }
 
         genreSpinner = (Spinner) findViewById(R.id.genre_spinner);
         ArrayAdapter<CharSequence> sortByAdapter = ArrayAdapter.createFromResource(this,
