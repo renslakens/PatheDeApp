@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private void getAllMovies(String sortBy) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        mSwipeRefreshLayout.setRefreshing(true);
 
         Call<LoadedMovies> call = apiInterface.getMovies("11db3143a380ada0de96fe9028cbc905", pageNumber, sortBy);
 
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 mMovieList.addAll(movies.getResults());
                 Log.d("movieListMovies", response.toString());
                 Log.d("MovieListMovies", mMovieList.toString());
+                mSwipeRefreshLayout.setRefreshing(false);
                 mAdapter.setMovieList(mMovieList);
             }
 
