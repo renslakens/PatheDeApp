@@ -17,6 +17,10 @@
     <string name="filter_picker">filterPicker</string>
     <string name="intro_text">Hello There, Welcome Back</string>
     <string name="sign_in_text">Sign In to continue</string>
+    <string name="hint_vote_count">vote count</string>
+    <string name="hint_year">year</string>
+    <string name="hint_vote_average">vote average</string>
+    <string name="hint_original_language">original language</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>
