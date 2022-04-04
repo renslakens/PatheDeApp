@@ -69,6 +69,7 @@ public class MovieDetail extends AppCompatActivity {
         TextView name = (TextView) findViewById(R.id.detail_movieName);
         ImageView image = (ImageView) findViewById(R.id.detail_movie_cover);
         ImageButton shareButton = (ImageButton) findViewById(R.id.detail_share_button);
+        ImageButton listButton = (ImageButton) findViewById(R.id.detail_list_button);
         TextView score = (TextView) findViewById(R.id.detail_rating);
         TextView genre = (TextView) findViewById(R.id.detail_genre);
         TextView description = (TextView) findViewById(R.id.detail_description);
@@ -113,6 +114,15 @@ public class MovieDetail extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
                 intent.putExtra(Intent.EXTRA_TEXT, "https://www.themoviedb.org/movie/" + getIntent().getStringExtra("movieId"));
                 startActivity(Intent.createChooser(intent, "Share URL"));
+            }
+        });
+
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met session id.
+                Intent intent = new Intent(view.getContext(), ListCreateActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
     }
