@@ -7,13 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.groep3.pathedeapp.MainActivity;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;

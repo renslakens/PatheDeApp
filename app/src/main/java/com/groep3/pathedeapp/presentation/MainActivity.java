@@ -1,4 +1,4 @@
-package com.groep3.pathedeapp;
+package com.groep3.pathedeapp.presentation;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,13 +16,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
-import com.groep3.pathedeapp.presentation.ChooseFilterDialog;
-import com.groep3.pathedeapp.presentation.FilterOption;
-import com.groep3.pathedeapp.presentation.MovieList;
 
 import java.util.LinkedList;
 
