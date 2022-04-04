@@ -25,6 +25,8 @@
     <string name="list_name">List name</string>
     <string name="list_create">Create List</string>
     <string name="list_make_button">Make List</string>
+    <string name="button_new_list">Make New List</string>
+    <string name="button_add_to_list">Add Movie</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>
