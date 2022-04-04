@@ -15,20 +15,18 @@ import com.groep3.pathedeapp.domain.Review;
 
 import java.util.LinkedList;
 
-public class ReviewList extends RecyclerView.Adapter<ReviewList.ReviewViewHolder>{
+public class ReviewList extends RecyclerView.Adapter<ReviewList.ReviewViewHolder> {
     private LinkedList<Review> mReviewList;
     private LayoutInflater mInflater;
     private Context context;
 
-
-    public ReviewList(Context context, LinkedList<Review> reviewList){
+    public ReviewList(Context context, LinkedList<Review> reviewList) {
         mInflater = LayoutInflater.from(context);
         this.mReviewList = reviewList;
         this.context = context;
     }
 
-
-    static class ReviewViewHolder extends RecyclerView.ViewHolder{
+    static class ReviewViewHolder extends RecyclerView.ViewHolder {
         public final TextView reviewer;
         public final TextView review;
         final ReviewList mAdapter;
@@ -50,7 +48,7 @@ public class ReviewList extends RecyclerView.Adapter<ReviewList.ReviewViewHolder
 
     @NonNull
     @Override
-    public ReviewList.ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)  {
+    public ReviewList.ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mItemView = mInflater.inflate(R.layout.movie_review, parent, false);
         return new ReviewViewHolder(mItemView, this);
     }
@@ -61,7 +59,6 @@ public class ReviewList extends RecyclerView.Adapter<ReviewList.ReviewViewHolder
         holder.review.setText(mCurrent.getReview());
         holder.reviewer.setText(mCurrent.getAuthor());
     }
-
 
     @Override
     public int getItemCount() {
