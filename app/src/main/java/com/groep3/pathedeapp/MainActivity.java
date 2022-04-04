@@ -7,15 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.SearchEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -23,10 +20,8 @@ import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
-import com.groep3.pathedeapp.domain.UserRequestToken;
 import com.groep3.pathedeapp.presentation.ChooseFilterDialog;
 import com.groep3.pathedeapp.presentation.FilterOption;
-import com.groep3.pathedeapp.presentation.MovieDetail;
 import com.groep3.pathedeapp.presentation.MovieList;
 
 
@@ -35,8 +30,6 @@ import java.util.LinkedList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, ChooseFilterDialog.OnInputListenerDialog ,FilterOption.OnInputListener{
     private String descending = "desc";

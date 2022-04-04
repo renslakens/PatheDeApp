@@ -3,13 +3,9 @@ package com.groep3.pathedeapp.dataacces;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
-import com.groep3.pathedeapp.domain.PostUser;
-import com.groep3.pathedeapp.domain.Review;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
-import com.groep3.pathedeapp.domain.UserRequestToken;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
