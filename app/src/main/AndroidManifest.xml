@@ -15,9 +15,9 @@
         <activity
             android:name=".presentation.MovieDetail"
             android:exported="false" />
-        <!--<activity
-            android:name=".presentation.SearchActivity"
-            android:exported="false" />-->
+        <activity
+            android:name=".presentation.SplashActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.LoginActivity"
             android:exported="true">
