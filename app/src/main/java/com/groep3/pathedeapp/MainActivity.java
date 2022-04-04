@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         SearchView simpleSearchView = (SearchView) findViewById(R.id.search_bar); // inititate a search view
         CharSequence query = simpleSearchView.getQuery(); // get the query string currently in the text field
-        Log.d("test", s);
+        Log.d(TAG, s);
         mMovieList.clear();
         searchMovie(s);
         genreSpinner.setVisibility(mRecyclerView.GONE);
@@ -274,25 +274,25 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mMovieList.clear();
             switch (position) {
                 case 0:
-                    sortBy = "popularity.";
+                    sortBy = getString(R.string.popularity);
                     break;
                 case 1:
-                    sortBy = "release_date.";
+                    sortBy = getString(R.string.release_date);
                     break;
                 case 2:
-                    sortBy = "revenue.";
+                    sortBy = getString(R.string.revenue);
                     break;
                 case 3:
-                    sortBy = "primary_release_date.";
+                    sortBy = getString(R.string.primary_release_date);
                     break;
                 case 4:
-                    sortBy = "original_title.";
+                    sortBy = getString(R.string.original_title);
                     break;
                 case 5:
-                    sortBy = "vote_average.";
+                    sortBy = getString(R.string.vote_average);
                     break;
                 case 6:
-                    sortBy = "vote_count.";
+                    sortBy = getString(R.string.vote_count);
                     break;
 
             }
