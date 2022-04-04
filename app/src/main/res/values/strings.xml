@@ -14,8 +14,17 @@
         <item>vote average</item>
         <item>vote count</item>
     </string-array>
+
     <string-array name="spinner_mode">
         <item>descending</item>
         <item>ascending</item>
+    </string-array>
+
+    <string-array name="filters">
+        <item>clear all filters</item>
+        <item>vote count</item>
+        <item>release year</item>
+        <item>vote average</item>
+        <item>with people</item>
     </string-array>
 </resources>

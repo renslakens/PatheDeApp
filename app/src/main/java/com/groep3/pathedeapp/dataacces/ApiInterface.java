@@ -22,7 +22,11 @@ public interface ApiInterface {
     Call<LoadedMovies> getMovies(
             @Query("api_key") String apiKey,
             @Query("page") int page,
-            @Query("sort_by") String sort
+            @Query("sort_by") String sort,
+            @Query("vote_count.gte") Integer voteCount,
+            @Query("primary_release_year") Integer year,
+            @Query("vote_average.gte") Integer voteAverage,
+            @Query("with_original_language") String language
     );
 
     //Get movie by ID

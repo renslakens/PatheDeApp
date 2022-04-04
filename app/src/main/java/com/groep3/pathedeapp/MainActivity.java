@@ -1,11 +1,11 @@
 package com.groep3.pathedeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.SearchEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -23,6 +24,8 @@ import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.UserRequestToken;
+import com.groep3.pathedeapp.presentation.ChooseFilterDialog;
+import com.groep3.pathedeapp.presentation.FilterOption;
 import com.groep3.pathedeapp.presentation.MovieDetail;
 import com.groep3.pathedeapp.presentation.MovieList;
 
@@ -35,7 +38,7 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, ChooseFilterDialog.OnInputListenerDialog ,FilterOption.OnInputListener{
     private String descending = "desc";
     private String sortBy = "popularity.";
     private String call = sortBy + descending;
@@ -43,8 +46,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private String currentQuery;
     private Spinner genreSpinner;
     private Spinner ratingSpinner;
-
-    private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
+    private String text = "test";
+    private Integer voteCount = null;
+    private Integer year = null;
+    private Integer voteAverage = null;
+    private String originalLanguage = null;
+    private Integer filterMode = null;
+    private ImageView filterButton;
+    private String apiKey = "11db3143a380ada0de96fe9028cbc905";
 
     private SearchView editsearch;
 
@@ -96,13 +105,22 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         genreSpinner.setAdapter(sortByAdapter);
         genreSpinner.setOnItemSelectedListener(new sortListener());
 
-
-        ratingSpinner = (Spinner) findViewById(R.id.rating_spinner);
-        ArrayAdapter<CharSequence> modeAdapter = ArrayAdapter.createFromResource(this,
+        ratingSpinner = (Spinner) findViewById(R.id.genre_mode_spinner);
+        ArrayAdapter<CharSequence> genreModeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_mode, android.R.layout.simple_spinner_item);
-        modeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ratingSpinner.setAdapter(modeAdapter);
-        ratingSpinner.setOnItemSelectedListener(new modeListener());
+        genreModeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ratingSpinner.setAdapter(genreModeAdapter);
+        ratingSpinner.setOnItemSelectedListener(new sortListener());
+
+        filterButton = (ImageView) findViewById(R.id.filter_button);
+
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterReleaseYear(1);
+            }
+        });
 
         editsearch = (SearchView) findViewById(R.id.search_bar);
         editsearch.setOnQueryTextListener(this);
@@ -142,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void getAllMovies(String sortBy) {
         mSwipeRefreshLayout.setRefreshing(true);
 
-        Call<LoadedMovies> call = apiInterface.getMovies(apiKey, pageNumber, sortBy);
+        Call<LoadedMovies> call = apiInterface.getMovies(apiKey, pageNumber, sortBy, voteCount, year, voteAverage, originalLanguage);
 
         call.enqueue(new Callback<LoadedMovies>() {
             @Override
@@ -216,6 +234,47 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         return false;
     }
 
+    @Override
+    public void sendInput(Integer input) {
+        this.filterMode = input;
+        Log.d("testing", String.valueOf(filterMode));
+
+        if(filterMode == 9){
+            voteCount = null;
+            year = null;
+            voteAverage = null;
+            originalLanguage = null;
+            pageNumber = 1;
+            call = sortBy + descending;
+            mMovieList.clear();
+            getAllMovies(call);
+        }
+
+
+    }
+
+    @Override
+    public void sendInput(String input) {
+        switch (filterMode){
+            case 0:
+                voteCount = Integer.valueOf(input);
+                break;
+            case 1:
+                year = Integer.valueOf(input);
+                break;
+            case 2:
+                voteAverage = Integer.valueOf(input);
+                break;
+            case 3:
+                originalLanguage = input;
+                break;
+        }
+        pageNumber = 1;
+        call = sortBy + descending;
+        mMovieList.clear();
+        getAllMovies(call);
+    }
+
     //Filteren op populariteit, release date, revenue, primary release date, original title, vote average en vote count
     private class sortListener implements android.widget.AdapterView.OnItemSelectedListener {
         @Override
@@ -279,5 +338,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         }
     }
+
+
+    public void filterReleaseYear(Integer mode) {
+        DialogFragment newFragment = new ChooseFilterDialog(mode);
+
+        newFragment.show(getSupportFragmentManager(), "filterPicker");
+
+    }
+
 
 }
