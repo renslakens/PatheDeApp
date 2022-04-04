@@ -15,6 +15,8 @@
     <string name="desc">desc</string>
     <string name="asc">asc</string>
     <string name="filter_picker">filterPicker</string>
+    <string name="intro_text">Hello There, Welcome Back</string>
+    <string name="sign_in_text">Sign In to continue</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>
