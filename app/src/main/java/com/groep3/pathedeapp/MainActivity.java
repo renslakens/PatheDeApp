@@ -1,11 +1,5 @@
 package com.groep3.pathedeapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +10,12 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
@@ -24,14 +24,13 @@ import com.groep3.pathedeapp.presentation.ChooseFilterDialog;
 import com.groep3.pathedeapp.presentation.FilterOption;
 import com.groep3.pathedeapp.presentation.MovieList;
 
-
 import java.util.LinkedList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, ChooseFilterDialog.OnInputListenerDialog ,FilterOption.OnInputListener{
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, ChooseFilterDialog.OnInputListenerDialog, FilterOption.OnInputListener {
     private String descending = "desc";
     private String sortBy = "popularity.";
     private String call = sortBy + descending;
@@ -168,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(Call<LoadedMovies> call, Throwable t) {
-                Log.e("MainActivity", t.toString());
+                Log.e(TAG, t.toString());
             }
         });
 
@@ -193,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(Call<LoadedMovies> call, Throwable t) {
-                Log.e("MainActivity", t.toString());
+                Log.e(TAG, t.toString());
             }
         });
 
@@ -230,9 +229,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void sendInput(Integer input) {
         this.filterMode = input;
-        Log.d("testing", String.valueOf(filterMode));
+        Log.d(TAG, String.valueOf(filterMode));
 
-        if(filterMode == 9){
+        if (filterMode == 9) {
             voteCount = null;
             year = null;
             voteAverage = null;
@@ -248,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void sendInput(String input) {
-        switch (filterMode){
+        switch (filterMode) {
             case 0:
                 voteCount = Integer.valueOf(input);
                 break;
@@ -276,7 +275,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             switch (position) {
                 case 0:
                     sortBy = "popularity.";
-                    Log.d("test", "test");
                     break;
                 case 1:
                     sortBy = "release_date.";
@@ -316,7 +314,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             switch (position) {
                 case 0:
                     descending = "desc";
-                    Log.d("test", "test");
                     break;
                 case 1:
                     descending = "asc";
@@ -332,13 +329,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-
     public void filterReleaseYear(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
-
         newFragment.show(getSupportFragmentManager(), "filterPicker");
-
     }
-
 
 }
