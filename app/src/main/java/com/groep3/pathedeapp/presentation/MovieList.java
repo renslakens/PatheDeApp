@@ -12,27 +12,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.domain.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
-public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
+public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
     private LinkedList<Movie> nMovieList;
     private LayoutInflater mInflater;
     private Context context;
 
-
-    public MovieList(Context context, LinkedList<Movie> movieList){
+    public MovieList(Context context, LinkedList<Movie> movieList) {
         mInflater = LayoutInflater.from(context);
         this.nMovieList = movieList;
         this.context = context;
     }
 
-
-    static class MovieViewHolder extends RecyclerView.ViewHolder{
+    static class MovieViewHolder extends RecyclerView.ViewHolder {
         public final TextView movieTitle;
         public final ImageView imageView;
         public final TextView movieDate;
@@ -48,10 +45,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
 
             this.mAdapter = adapter;
         }
-
     }
-
-
 
     public void setMovieList(LinkedList<Movie> movieList) {
         this.nMovieList = movieList;
@@ -60,7 +54,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
 
     @NonNull
     @Override
-    public MovieList.MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)  {
+    public MovieList.MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mItemView = mInflater.inflate(R.layout.movie_list_item, parent, false);
         return new MovieViewHolder(mItemView, this);
     }
@@ -69,20 +63,15 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
     public void onBindViewHolder(@NonNull MovieList.MovieViewHolder holder, int position) {
         Movie mCurrent = nMovieList.get(position);
 
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View view) {
-
                 Intent moviePage = new Intent(context, MovieDetail.class);
                 moviePage.putExtra("movieId", mCurrent.getId().toString());
                 context.startActivity(moviePage);
-
             }
         });
-
 
         holder.movieTitle.setText(mCurrent.getTitle());
         holder.movieScore.setText(mCurrent.getVoteAverage().toString());
@@ -91,11 +80,10 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder>{
             Picasso.with(context)
                     .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + mCurrent.getPosterPath()))
                     .into(holder.imageView);
-        }else {
+        } else {
             Picasso.with(context).load(R.drawable.image_placeholder).into(holder.imageView);
         }
     }
-
 
     @Override
     public int getItemCount() {

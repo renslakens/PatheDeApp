@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -18,10 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.groep3.pathedeapp.R;
-
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
-import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.Review;
@@ -35,14 +31,13 @@ import retrofit2.Response;
 
 
 public class MovieDetail extends AppCompatActivity {
-    private String TAG = "MovieDetail";
+    private String TAG = MovieDetail.class.getSimpleName();
     private Movie movie;
     private final LinkedList<Review> mReviewList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private ReviewList mAdapter;
     private int pageNumber = 1;
     private int totalPages = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +57,6 @@ public class MovieDetail extends AppCompatActivity {
             }
         });
 
-
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
 
@@ -80,7 +74,6 @@ public class MovieDetail extends AppCompatActivity {
         TextView description = (TextView) findViewById(R.id.detail_description);
         TextView length = (TextView) findViewById(R.id.detail_length);
 
-        //
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         Call<Movie> call = apiInterface.getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")), "11db3143a380ada0de96fe9028cbc905");
@@ -100,20 +93,17 @@ public class MovieDetail extends AppCompatActivity {
                             .into(image);
                 }
 
-                Log.d("test", movie.getTitle());
-                Log.d("test", response.body().toString());
-                Log.d("test", response.toString());
+                Log.d(TAG, movie.getTitle());
+                Log.d(TAG, response.body().toString());
+                Log.d(TAG, response.toString());
             }
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-
             }
         });
 
         getAllReviews();
-
-
 
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +115,6 @@ public class MovieDetail extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent, "Share URL"));
             }
         });
-
     }
 
     @Override
@@ -148,7 +137,7 @@ public class MovieDetail extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
     }
 
-    private void getAllReviews(){
+    private void getAllReviews() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<LoadedReviews> reviewCall = apiInterface.getReview(Integer.parseInt(getIntent().getStringExtra("movieId")), "11db3143a380ada0de96fe9028cbc905", pageNumber);
 
@@ -163,14 +152,13 @@ public class MovieDetail extends AppCompatActivity {
                 for (int i = 0; i < mReviewList.size(); i++) {
                     Review review = mReviewList.get(i);
 
-                    Log.d("test", review.getAuthor());
+                    Log.d(TAG, review.getAuthor());
                 }
                 setAdapter();
             }
 
             @Override
             public void onFailure(Call<LoadedReviews> call, Throwable t) {
-
             }
         });
     }
