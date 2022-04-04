@@ -21,6 +21,10 @@
     <string name="hint_year">year</string>
     <string name="hint_vote_average">vote average</string>
     <string name="hint_original_language">original language</string>
+    <string name="list_description">List description</string>
+    <string name="list_name">List name</string>
+    <string name="list_create">Create List</string>
+    <string name="list_make_button">Make List</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/titleList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/list_create"
+        style="@style/TextAppearance.AppCompat.Title" />
+
+    <EditText
+        android:id="@+id/nameList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/list_name" />
+
+    <EditText
+        android:id="@+id/descriptionList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="@string/list_description" />
+
+    <Button
+        android:id="@+id/buttonListCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="createList"
+        android:text="@string/list_make_button" />
+
+</LinearLayout>
