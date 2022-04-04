@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private String currentQuery;
     private Spinner genreSpinner;
     private Spinner ratingSpinner;
-    private String text = "test";
     private Integer voteCount = null;
     private Integer year = null;
     private Integer voteAverage = null;
