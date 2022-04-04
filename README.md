@@ -1,6 +1,6 @@
 # PatheDeApp
 
-Niek 2
-Junhao 1
+Niek
+Junhao
 Rens
 Mohamed
