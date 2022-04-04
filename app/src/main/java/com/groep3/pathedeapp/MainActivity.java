@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private MovieList mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
-    private final String TAG = "MainActivity";
+    private final String TAG = MainActivity.class.getSimpleName();
 
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         editsearch = (SearchView) findViewById(R.id.search_bar);
         editsearch.setOnQueryTextListener(this);
 
-
         context = getApplicationContext();
     }
 
@@ -159,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onResponse(Call<LoadedMovies> call, Response<LoadedMovies> response) {
                 LoadedMovies movies = response.body();
                 mMovieList.addAll(movies.getResults());
-                Log.d("movieListMovies", response.toString());
-                Log.d("MovieListMovies", mMovieList.toString());
+                Log.d(TAG, "response = " + response);
+                Log.d(TAG, "Movies = " + mMovieList);
                 mSwipeRefreshLayout.setRefreshing(false);
                 mAdapter.setMovieList(mMovieList);
             }
@@ -313,10 +312,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mMovieList.clear();
             switch (position) {
                 case 0:
-                    descending = "desc";
+                    descending = getString(R.string.desc);
                     break;
                 case 1:
-                    descending = "asc";
+                    descending = getString(R.string.asc);
                     break;
             }
             call = sortBy + descending;
@@ -331,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     public void filterReleaseYear(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
-        newFragment.show(getSupportFragmentManager(), "filterPicker");
+        newFragment.show(getSupportFragmentManager(), getString(R.string.filter_picker));
     }
 
 }
