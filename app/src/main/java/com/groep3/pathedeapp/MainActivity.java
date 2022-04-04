@@ -183,8 +183,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onResponse(Call<LoadedMovies> call, Response<LoadedMovies> response) {
                 LoadedMovies movies = response.body();
                 mMovieList.addAll(movies.getResults());
-                Log.d("movieListMovies", response.toString());
-                Log.d("MovieListMovies", mMovieList.toString());
+                Log.d(TAG, "response = " + response);
+                Log.d(TAG, "Movies = " + mMovieList);
                 mSwipeRefreshLayout.setRefreshing(false);
                 mAdapter.setMovieList(mMovieList);
             }
