@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.groep3.pathedeapp.MainActivity;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private UserAuthenticate requestTokenOnLogin = new UserAuthenticate();
 
     private Button mLogin;
+    private TextInputEditText mUsername;
+    private TextInputEditText mPassword;
 
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -75,10 +78,15 @@ public class LoginActivity extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText usernameInput = (EditText) findViewById(R.id.username);
-                String username = usernameInput.getText().toString();
-                EditText passwordInput = (EditText) findViewById(R.id.password);
-                String password = passwordInput.getText().toString();
+//                TextInputEditText usernameInput = findViewById(R.id.username);
+//                String username = usernameInput.getText().toString();
+//                TextInputEditText passwordInput = findViewById(R.id.password);
+//                String password = passwordInput.getText().toString();
+
+                mUsername = (TextInputEditText) findViewById(R.id.username);
+                String username = mUsername.getText().toString();
+                mPassword = (TextInputEditText) findViewById(R.id.password);
+                String password = mPassword.getText().toString();
 
                 Call<UserAuthenticate> call = apiInterface.validateRequestToken(apiKey, username, password, requestToken.getRequestToken());
 
