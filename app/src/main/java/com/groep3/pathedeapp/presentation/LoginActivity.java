@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,8 +24,12 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
     public static String SESSION_ID = "";
+
     private UserAuthenticate requestToken = new UserAuthenticate();
     private UserAuthenticate requestTokenOnLogin = new UserAuthenticate();
+
+    private Button mLogin;
+
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
     @Override
@@ -32,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getRequestToken(apiKey);
+        getRequestToken();
+        login();
     }
 
     private void goToURL(String url) {
@@ -41,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(launchBrowser);
     }
 
-    private void getRequestToken(String apiKey) {
+    private void getRequestToken() {
         Call<UserAuthenticate> call = apiInterface.createNewSession(apiKey);
 
         call.enqueue(new Callback<UserAuthenticate>() {
@@ -49,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
                 requestToken = response.body();
-                Log.d("Request Token: ", requestToken.toString());
+                Log.d("Request Token", requestToken.getRequestToken());
+                login();
             }
 
             @Override
@@ -60,29 +67,36 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Login with username + password
-    public void login(View view) {
-        EditText usernameInput = (EditText) findViewById(R.id.username);
-        String username = usernameInput.getText().toString();
-        EditText passwordInput = (EditText) findViewById(R.id.password);
-        String password = passwordInput.getText().toString();
+    public void login() {
+        mLogin = findViewById(R.id.buttonLogin);
 
-        Call<UserAuthenticate> call = apiInterface.validateRequestToken(apiKey, username, password, requestToken.getRequestToken());
-
-        call.enqueue(new Callback<UserAuthenticate>() {
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
-                if(response.isSuccessful()) {
-                    requestTokenOnLogin = response.body();
-                    Log.d("Login successful", response.body().toString());
-                    getSessionID();
-                } else {
-                    Log.d("Error occurred", "failure " + response.headers());
-                }
-            }
+            public void onClick(View view) {
+                EditText usernameInput = (EditText) findViewById(R.id.username);
+                String username = usernameInput.getText().toString();
+                EditText passwordInput = (EditText) findViewById(R.id.password);
+                String password = passwordInput.getText().toString();
 
-            @Override
-            public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                Log.d("Error occurred", t.toString());
+                Call<UserAuthenticate> call = apiInterface.validateRequestToken(apiKey, username, password, requestToken.getRequestToken());
+
+                call.enqueue(new Callback<UserAuthenticate>() {
+                    @Override
+                    public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
+                        if(response.isSuccessful()) {
+                            requestTokenOnLogin = response.body();
+                            Log.d("Login successful", response.body().toString());
+                            getSessionID();
+                        } else {
+                            Log.d("Error occurred", "failure " + response.headers());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserAuthenticate> call, Throwable t) {
+                        Log.d("Error occurred", t.toString());
+                    }
+                });
             }
         });
     }
