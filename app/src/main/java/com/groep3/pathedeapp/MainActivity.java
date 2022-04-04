@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         filterButton = (ImageView) findViewById(R.id.filter_button);
 
-
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
-
         if (genreSpinner.getVisibility() == mRecyclerView.GONE) {
             setAdapter();
             mMovieList.clear();
@@ -132,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mMovieList.clear();
             getAllMovies(call);
         }
-
 
         mSwipeRefreshLayout.setRefreshing(false);
     }
@@ -168,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Log.e(TAG, t.toString());
             }
         });
-
     }
 
     private void searchMovie(String query) {
@@ -193,12 +189,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Log.e(TAG, t.toString());
             }
         });
-
     }
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-
         SearchView simpleSearchView = (SearchView) findViewById(R.id.search_bar); // inititate a search view
         CharSequence query = simpleSearchView.getQuery(); // get the query string currently in the text field
         Log.d(TAG, s);
@@ -206,7 +200,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         searchMovie(s);
         genreSpinner.setVisibility(mRecyclerView.GONE);
         ratingSpinner.setVisibility(mRecyclerView.GONE);
-
 
         return false;
     }
@@ -239,8 +232,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mMovieList.clear();
             getAllMovies(call);
         }
-
-
     }
 
     @Override
@@ -292,7 +283,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 case 6:
                     sortBy = getString(R.string.vote_count);
                     break;
-
             }
             call = sortBy + descending;
             getAllMovies(call);
@@ -300,7 +290,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
-
         }
     }
 
@@ -323,7 +312,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
-
         }
     }
 
@@ -331,5 +319,4 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         DialogFragment newFragment = new ChooseFilterDialog(mode);
         newFragment.show(getSupportFragmentManager(), getString(R.string.filter_picker));
     }
-
 }
