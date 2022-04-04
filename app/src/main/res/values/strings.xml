@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">PatheDeApp</string>
     <string name="enter_as_guest_button">Enter as guest</string>
-    <string name="button_register">Register</string>
+    <string name="button_register">New user? Sign Up</string>
     <string name="button_login">Login</string>
     <string name="hint_password">Password</string>
     <string name="hint_username">Username</string>
+    <string name="welcome_text">Welcome to Pathé</string>
+    <string name="intro_text">Hello there, Welcome Back</string>
+    <string name="sign_in_text">Sign in to continue</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>
