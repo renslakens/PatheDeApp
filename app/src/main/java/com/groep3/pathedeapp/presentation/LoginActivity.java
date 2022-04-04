@@ -78,11 +78,6 @@ public class LoginActivity extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                TextInputEditText usernameInput = findViewById(R.id.username);
-//                String username = usernameInput.getText().toString();
-//                TextInputEditText passwordInput = findViewById(R.id.password);
-//                String password = passwordInput.getText().toString();
-
                 mUsername = (TextInputEditText) findViewById(R.id.username);
                 String username = mUsername.getText().toString();
                 mPassword = (TextInputEditText) findViewById(R.id.password);
