@@ -1,11 +1,5 @@
 package com.groep3.pathedeapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +10,12 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedMovies;
@@ -24,14 +24,13 @@ import com.groep3.pathedeapp.presentation.ChooseFilterDialog;
 import com.groep3.pathedeapp.presentation.FilterOption;
 import com.groep3.pathedeapp.presentation.MovieList;
 
-
 import java.util.LinkedList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, ChooseFilterDialog.OnInputListenerDialog ,FilterOption.OnInputListener{
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, ChooseFilterDialog.OnInputListenerDialog, FilterOption.OnInputListener {
     private String descending = "desc";
     private String sortBy = "popularity.";
     private String call = sortBy + descending;
@@ -168,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(Call<LoadedMovies> call, Throwable t) {
-                Log.e("MainActivity", t.toString());
+                Log.e(TAG, t.toString());
             }
         });
 
@@ -193,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(Call<LoadedMovies> call, Throwable t) {
-                Log.e("MainActivity", t.toString());
+                Log.e(TAG, t.toString());
             }
         });
 
@@ -204,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         SearchView simpleSearchView = (SearchView) findViewById(R.id.search_bar); // inititate a search view
         CharSequence query = simpleSearchView.getQuery(); // get the query string currently in the text field
-        Log.d("test", s);
+        Log.d(TAG, s);
         mMovieList.clear();
         searchMovie(s);
         genreSpinner.setVisibility(mRecyclerView.GONE);
@@ -230,9 +229,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void sendInput(Integer input) {
         this.filterMode = input;
-        Log.d("testing", String.valueOf(filterMode));
+        Log.d(TAG, String.valueOf(filterMode));
 
-        if(filterMode == 9){
+        if (filterMode == 9) {
             voteCount = null;
             year = null;
             voteAverage = null;
@@ -248,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void sendInput(String input) {
-        switch (filterMode){
+        switch (filterMode) {
             case 0:
                 voteCount = Integer.valueOf(input);
                 break;
@@ -275,26 +274,25 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mMovieList.clear();
             switch (position) {
                 case 0:
-                    sortBy = "popularity.";
-                    Log.d("test", "test");
+                    sortBy = getString(R.string.popularity);
                     break;
                 case 1:
-                    sortBy = "release_date.";
+                    sortBy = getString(R.string.release_date);
                     break;
                 case 2:
-                    sortBy = "revenue.";
+                    sortBy = getString(R.string.revenue);
                     break;
                 case 3:
-                    sortBy = "primary_release_date.";
+                    sortBy = getString(R.string.primary_release_date);
                     break;
                 case 4:
-                    sortBy = "original_title.";
+                    sortBy = getString(R.string.original_title);
                     break;
                 case 5:
-                    sortBy = "vote_average.";
+                    sortBy = getString(R.string.vote_average);
                     break;
                 case 6:
-                    sortBy = "vote_count.";
+                    sortBy = getString(R.string.vote_count);
                     break;
 
             }
@@ -316,7 +314,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             switch (position) {
                 case 0:
                     descending = "desc";
-                    Log.d("test", "test");
                     break;
                 case 1:
                     descending = "asc";
@@ -332,13 +329,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-
     public void filterReleaseYear(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
-
         newFragment.show(getSupportFragmentManager(), "filterPicker");
-
     }
-
 
 }
