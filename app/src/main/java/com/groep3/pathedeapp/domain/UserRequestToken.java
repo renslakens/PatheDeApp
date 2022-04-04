@@ -11,8 +11,4 @@ public class UserRequestToken {
     public String getRequestToken() {
         return requestToken;
     }
-
-    public void setRequestToken(String requestToken) {
-        this.requestToken = requestToken;
-    }
 }

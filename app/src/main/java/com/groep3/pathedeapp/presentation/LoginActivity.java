@@ -1,12 +1,12 @@
 package com.groep3.pathedeapp.presentation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +14,7 @@ import com.groep3.pathedeapp.MainActivity;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
-import com.groep3.pathedeapp.domain.PostUser;
-import com.groep3.pathedeapp.domain.UserRequestToken;
+import com.groep3.pathedeapp.domain.UserAuthenticate;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +22,9 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
+    public static String SESSION_ID = "";
+    private UserAuthenticate requestToken = new UserAuthenticate();
+    private UserAuthenticate requestTokenOnLogin = new UserAuthenticate();
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
     @Override
@@ -40,19 +42,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getRequestToken(String apiKey) {
-        Call<UserRequestToken> call = apiInterface.createNewSession(apiKey);
+        Call<UserAuthenticate> call = apiInterface.createNewSession(apiKey);
 
-        call.enqueue(new Callback<UserRequestToken>() {
+        call.enqueue(new Callback<UserAuthenticate>() {
 
             @Override
-            public void onResponse(Call<UserRequestToken> call, Response<UserRequestToken> response) {
-                UserRequestToken token = response.body();
-                Log.d("Request Token: ", token.toString());
+            public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
+                requestToken = response.body();
+                Log.d("Request Token: ", requestToken.toString());
             }
 
             @Override
-            public void onFailure(Call<UserRequestToken> call, Throwable t) {
-                Log.d("Request Token", "Error occured");
+            public void onFailure(Call<UserAuthenticate> call, Throwable t) {
+                Log.d("Request Token", "Error occurred");
             }
         });
     }
@@ -64,15 +66,80 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordInput = (EditText) findViewById(R.id.password);
         String password = passwordInput.getText().toString();
 
-        //PostUser postUser = new PostUser(username, password, //request token moet hier staan);
+        Call<UserAuthenticate> call = apiInterface.validateRequestToken(apiKey, username, password, requestToken.getRequestToken());
 
-        //Call<PostUser> call = apiInterface.validateRequestToken(apiKey, postUser);
+        call.enqueue(new Callback<UserAuthenticate>() {
+            @Override
+            public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
+                if(response.isSuccessful()) {
+                    requestTokenOnLogin = response.body();
+                    Log.d("Login successful", response.body().toString());
+                    getSessionID();
+                } else {
+                    Log.d("Error occurred", "failure " + response.headers());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserAuthenticate> call, Throwable t) {
+                Log.d("Error occurred", t.toString());
+            }
+        });
+    }
+
+    //Get session ID
+    private void getSessionID() {
+        Call<UserAuthenticate> call = apiInterface.createSessionID(apiKey, requestToken.getRequestToken());
+
+        call.enqueue(new Callback<UserAuthenticate>() {
+            @Override
+            public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
+                if(response.isSuccessful()) {
+                    UserAuthenticate session = response.body();
+                    SESSION_ID = session.getSessionID();
+                    Log.d("Created Session", SESSION_ID);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("Error occurred", "failure " + response.headers());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UserAuthenticate> call, Throwable t) {
+                Log.d("Error occurred", t.toString());
+            }
+        });
     }
 
     //Login as guest
     public void guestLogin(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        Call<UserAuthenticate> call = apiInterface.newGuestSession(apiKey);
+
+        call.enqueue(new Callback<UserAuthenticate>() {
+            @Override
+            public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
+                if(response.isSuccessful()) {
+                    UserAuthenticate guestSession = response.body();
+                    SESSION_ID = guestSession.getGuestSessionID();
+                    Log.d("Created Session", SESSION_ID);
+                    Toast.makeText(getApplicationContext(), "Successfully logged in as guest", Toast.LENGTH_SHORT).show();
+                    Log.d("Login", "Signed in as guest");
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    view.getContext().startActivity(intent);
+                } else {
+                    Log.d("Error occurred", "failure " + response.headers());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserAuthenticate> call, Throwable t) {
+                Log.d("Error occurred", t.toString());
+            }
+        });
+
     }
 
     //Register an account at themoviedb.org

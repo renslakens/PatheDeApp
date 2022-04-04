@@ -5,6 +5,7 @@ import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.PostUser;
 import com.groep3.pathedeapp.domain.Review;
+import com.groep3.pathedeapp.domain.UserAuthenticate;
 import com.groep3.pathedeapp.domain.UserRequestToken;
 
 import retrofit2.Call;
@@ -49,21 +50,29 @@ public interface ApiInterface {
 
     //Get request_token
     @GET("authentication/token/new")
-    Call<UserRequestToken> createNewSession(
+    Call<UserAuthenticate> createNewSession(
             @Query("api_key") String apiKey
     );
 
     //Validate request_token with login
     @POST("authentication/token/validate_with_login")
-    Call<PostUser> validateRequestToken(
+    Call<UserAuthenticate> validateRequestToken(
             @Query("api_key") String apiKey,
-            @Body() PostUser loginData
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("request_token") String requestToken
     );
 
     //Create session ID with request token
     @POST("authentication/session/new")
-    Call<UserRequestToken> createSessionID(
+    Call<UserAuthenticate> createSessionID(
             @Query("api_key") String apiKey,
-            @Body() UserRequestToken requestToken
+            @Field("request_token") String requestToken
+    );
+
+    //Create guest session
+    @POST("authentication/guest_session/new")
+    Call<UserAuthenticate> newGuestSession(
+            @Query("api_key") String apiKey
     );
 }
