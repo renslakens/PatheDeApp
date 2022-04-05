@@ -19,13 +19,13 @@ import com.squareup.picasso.Picasso;
 import java.util.LinkedList;
 
 public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
-    private LinkedList<Movie> nMovieList;
+    private LinkedList<Movie> mMovieList;
     private LayoutInflater mInflater;
     private Context context;
 
     public MovieList(Context context, LinkedList<Movie> movieList) {
         mInflater = LayoutInflater.from(context);
-        this.nMovieList = movieList;
+        this.mMovieList = movieList;
         this.context = context;
     }
 
@@ -48,7 +48,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
     }
 
     public void setMovieList(LinkedList<Movie> movieList) {
-        this.nMovieList = movieList;
+        this.mMovieList = movieList;
         notifyDataSetChanged();
     }
 
@@ -61,7 +61,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MovieList.MovieViewHolder holder, int position) {
-        Movie mCurrent = nMovieList.get(position);
+        Movie mCurrent = mMovieList.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -87,6 +87,6 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
 
     @Override
     public int getItemCount() {
-        return nMovieList.size();
+        return mMovieList.size();
     }
 }
