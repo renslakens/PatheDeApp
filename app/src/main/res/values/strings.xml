@@ -5,16 +5,6 @@
     <string name="button_login">Login</string>
     <string name="hint_password">Password</string>
     <string name="hint_username">Username</string>
-    <string name="popularity">popularity.</string>
-    <string name="release_date">release_date.</string>
-    <string name="revenue">revenue.</string>
-    <string name="primary_release_date">primary_release_date.</string>
-    <string name="original_title">original_title.</string>
-    <string name="vote_average">vote_average.</string>
-    <string name="vote_count">vote_count.</string>
-    <string name="desc">desc</string>
-    <string name="asc">asc</string>
-    <string name="filter_picker">filterPicker</string>
     <string name="intro_text">Hello There, Welcome Back</string>
     <string name="sign_in_text">Sign In to continue</string>
     <string name="hint_vote_count">vote count</string>
@@ -28,6 +18,9 @@
     <string name="button_new_list">Make New List</string>
     <string name="button_add_to_list">Add Movie</string>
     <string name="list_name">List name</string>
+    <string name="rating">rating:</string>
+    <string name="genre">genre:</string>
+    <string name="runtime">runtime:</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>

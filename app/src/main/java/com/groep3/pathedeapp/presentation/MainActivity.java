@@ -320,6 +320,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     public void filterList(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
-        newFragment.show(getSupportFragmentManager(), "d");
+        newFragment.show(getSupportFragmentManager(), TAG);
     }
 }
