@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -121,8 +122,13 @@ public class MovieDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met session id.
-                Intent intent = new Intent(view.getContext(), ListActivity.class);
-                view.getContext().startActivity(intent);
+                if(LoginActivity.SESSION_ID == "") {
+                    //Toast bericht dat er niet ingelogd is
+                    Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(view.getContext(), ListActivity.class);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
     }

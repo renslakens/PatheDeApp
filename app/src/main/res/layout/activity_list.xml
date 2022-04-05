@@ -12,7 +12,7 @@
         android:id="@+id/listName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/list_name"
+        android:text="@string/list_title"
         style="@style/TextAppearance.AppCompat.Title" />
 
     <ImageButton
