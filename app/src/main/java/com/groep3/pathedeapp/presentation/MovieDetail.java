@@ -20,7 +20,6 @@ import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.Genre;
-import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.Review;
@@ -98,7 +97,7 @@ public class MovieDetail extends AppCompatActivity {
                 for (int i = 0; i < genres.size(); i++) {
                     genreNames.add(genres.get(i).getName());
                 }
-                genre.setText(genreNames.toString().replace("[", "").replace("]",  ""));
+                genre.setText(genreNames.toString().replace("[", "").replace("]", ""));
 
                 description.setText(movie.getOverview());
                 length.setText(movie.getRuntime().toString());
@@ -136,7 +135,7 @@ public class MovieDetail extends AppCompatActivity {
             public void onClick(View view) {
                 //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met login session id.
                 UserAuthenticate guestSession = new UserAuthenticate();
-                if(LoginActivity.SESSION_ID == LoginActivity.GUEST_SESSION_ID) {
+                if (LoginActivity.SESSION_ID == LoginActivity.GUEST_SESSION_ID) {
                     //Toast bericht dat er niet ingelogd is
                     Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
                 } else {

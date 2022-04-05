@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.domain.List;
-import com.groep3.pathedeapp.domain.Movie;
 
 import java.util.LinkedList;
 
@@ -28,6 +27,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
         public final TextView listTitle;
+
         final ListList mAdapter;
 
         public ListViewHolder(View itemView, ListList adapter) {
@@ -58,7 +58,6 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
 
             @Override
             public void onClick(View view) {
-                // personal list aanmaken?
 //                Intent moviePage = new Intent(context, MovieDetail.class);
 //                moviePage.putExtra("movieId", mCurrent.getId().toString());
 //                context.startActivity(moviePage);
