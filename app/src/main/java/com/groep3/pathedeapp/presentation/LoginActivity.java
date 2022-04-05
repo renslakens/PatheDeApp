@@ -105,6 +105,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     //Get session ID
     private void getSessionID() {
         Call<UserAuthenticate> call = apiInterface.createSessionID(apiKey, requestToken.getRequestToken());
