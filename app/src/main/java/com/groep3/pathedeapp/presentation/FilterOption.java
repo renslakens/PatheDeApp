@@ -23,12 +23,9 @@ public class FilterOption extends DialogFragment {
         this.mode = mode;
     }
 
-
     public interface OnInputListener {
         void sendInput(String input);
     }
-
-
 
     public OnInputListener onInputListener;
     private EditText inputBox;
@@ -83,7 +80,6 @@ public class FilterOption extends DialogFragment {
         });
 
         return view;
-
     }
 
     @Override

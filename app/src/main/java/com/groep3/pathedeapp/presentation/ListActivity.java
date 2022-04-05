@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.groep3.pathedeapp.R;
 
 public class ListActivity extends AppCompatActivity {
+    private ListList mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
