@@ -8,11 +8,18 @@
     tools:context=".presentation.ListActivity">
 
     <TextView
-        android:id="@+id/Lists"
+        android:id="@+id/listName"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lists_title" />
+        android:text="@string/list_title" />
+
+    <ImageButton
+        android:id="@+id/detail_share_button"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/share_icon" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listRecyclerView"
@@ -22,13 +29,11 @@
         android:scrollbars="vertical" />
 
     <Button
-        android:id="@+id/newListButton"
+        android:id="@+id/addToListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="createNewList"
-        android:text="@string/button_new_list" />
+        android:layout_marginTop="20dp"
+        android:text="@string/button_add_to_list" />
 
 </LinearLayout>

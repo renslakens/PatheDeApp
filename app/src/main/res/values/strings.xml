@@ -12,7 +12,8 @@
     <string name="hint_vote_average">vote average</string>
     <string name="hint_original_language">original language</string>
     <string name="list_description">List description</string>
-    <string name="list_title">Lists</string>
+    <string name="list_title">List</string>
+    <string name="lists_title">Lists</string>
     <string name="list_create">Create List</string>
     <string name="list_make_button">Make List</string>
     <string name="button_new_list">Make New List</string>
