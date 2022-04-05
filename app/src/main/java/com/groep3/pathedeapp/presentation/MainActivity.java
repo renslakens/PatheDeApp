@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 R.array.spinner_mode, android.R.layout.simple_spinner_item);
         genreModeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ratingSpinner.setAdapter(genreModeAdapter);
-        ratingSpinner.setOnItemSelectedListener(new sortListener());
+        ratingSpinner.setOnItemSelectedListener(new modeListener());
 
         filterButton = (ImageView) findViewById(R.id.filter_button);
 
@@ -261,25 +261,25 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mMovieList.clear();
             switch (position) {
                 case 0:
-                    sortBy = getString(R.string.popularity);
+                    sortBy = "popularity.";
                     break;
                 case 1:
-                    sortBy = getString(R.string.release_date);
+                    sortBy = "release_date.";
                     break;
                 case 2:
-                    sortBy = getString(R.string.revenue);
+                    sortBy = "revenue.";
                     break;
                 case 3:
-                    sortBy = getString(R.string.primary_release_date);
+                    sortBy = "primary_release_date.";
                     break;
                 case 4:
-                    sortBy = getString(R.string.original_title);
+                    sortBy = "original_title.";
                     break;
                 case 5:
-                    sortBy = getString(R.string.vote_average);
+                    sortBy = "vote_average.";
                     break;
                 case 6:
-                    sortBy = getString(R.string.vote_count);
+                    sortBy = "vote_count.";
                     break;
             }
             call = sortBy + descending;
@@ -294,14 +294,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private class modeListener implements android.widget.AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-            Object value = adapterView.getItemAtPosition(position);
             mMovieList.clear();
             switch (position) {
                 case 0:
-                    descending = getString(R.string.desc);
+                    descending = "desc";
                     break;
                 case 1:
-                    descending = getString(R.string.asc);
+                    descending = "asc";
                     break;
             }
             call = sortBy + descending;
@@ -315,6 +314,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     public void filterReleaseYear(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
-        newFragment.show(getSupportFragmentManager(), getString(R.string.filter_picker));
+        newFragment.show(getSupportFragmentManager(), "d");
     }
 }
