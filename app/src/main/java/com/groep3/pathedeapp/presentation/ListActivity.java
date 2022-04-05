@@ -1,8 +1,8 @@
 package com.groep3.pathedeapp.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.groep3.pathedeapp.R;
 
