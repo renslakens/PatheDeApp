@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PatheDeApp</string>
+    <string name="enter_as_guest_button">Kom binnen als gast</string>
+    <string name="button_register">Schrijf je in</string>
+    <string name="button_login">Log in</string>
+    <string name="hint_password">Wachtwoord</string>
+    <string name="hint_username">Gebruikersnaam</string>
+    <string name="popularity">populariteit</string>
+    <string name="release_date">publicatiedatum</string>
+    <string name="revenue">omzet</string>
+    <string name="primary_release_date">primaire_publicatiedatum</string>
+    <string name="original_title">orginele titel</string>
+    <string name="intro_text">Hallo, Wekkom terug</string>
+    <string name="sign_in_text">Meld je aan door te gaan</string>
+    <string name="hint_year">jaar</string>
+    <string name="list_name">Lijst naam</string>
+    <string name="list_create">Maak Lijst aan</string>
+    <string name="button_new_list">Maak nieuwe Lijst</string>
+    <string name="button_add_to_list">Voeg Film toe</string>
+    <string name="vote_average">stem gemiddelde</string>
+    <string name="vote_count">totaal stemmen</string>
+    <string name="asc">oplopend</string>
+    <string name="desc">aflopend</string>
+    <string name="filter_picker">filter kiezer</string>
+    <string name="hint_vote_count" translatable="false">totaal stemmen</string>
+    <string name="hint_vote_average">stem gemiddelde</string>
+    <string name="hint_original_language">orginele taal</string>
+    <string name="list_description" translatable="false">Lijst beschrijving</string>
+    <string name="list_make_button">Maak Lijst</string>
+</resources>
