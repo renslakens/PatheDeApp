@@ -1,5 +1,7 @@
 package com.groep3.pathedeapp.domain;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,9 +22,10 @@ public class Movie {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
-    @SerializedName("genre_ids")
+    @SerializedName("genres")
     @Expose
-    private List<Integer> genreIds = null;
+    private List<Genre> genres = null;
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -70,12 +73,14 @@ public class Movie {
         return releaseDate;
     }
 
-    public List<Integer> getGenreIds() {
-        return genreIds;
+    public List<Genre> genres() {
+        return genres;
     }
 
     public Integer getId() {
+
         return id;
+
     }
 
     public String getOriginalTitle() {
@@ -119,7 +124,6 @@ public class Movie {
                 ", adult=" + adult +
                 ", overview='" + overview + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
-                ", genreIds=" + genreIds +
                 ", id=" + id +
                 ", originalTitle='" + originalTitle + '\'' +
                 ", originalLanguage='" + originalLanguage + '\'' +

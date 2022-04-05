@@ -19,12 +19,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
+import com.groep3.pathedeapp.domain.Genre;
+import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.Review;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import retrofit2.Call;
@@ -40,6 +43,9 @@ public class MovieDetail extends AppCompatActivity {
     private ReviewList mAdapter;
     private int pageNumber = 1;
     private int totalPages = 1;
+    private ArrayList<Genre> genres;
+    private ArrayList<String> genreNames = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +94,12 @@ public class MovieDetail extends AppCompatActivity {
                 name.setText(movie.getTitle());
                 score.setText(movie.getVoteAverage().toString());
 //                             genre.setText( movie.getGenreIds().toString());
+                genres = (ArrayList<Genre>) movie.genres();
+                for (int i = 0; i < genres.size(); i++) {
+                    genreNames.add(genres.get(i).getName());
+                }
+                genre.setText(genreNames.toString().replace("[", "").replace("]",  ""));
+
                 description.setText(movie.getOverview());
                 length.setText(movie.getRuntime().toString());
                 if (movie.getPosterPath() != null) {
