@@ -25,19 +25,14 @@
                 android:layout_height="400dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image_placeholder"
-/>
-
+                android:src="@drawable/image_placeholder" />
 
             <TextView
                 android:id="@+id/name"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_toStartOf="@+id/rating"
                 android:layout_toEndOf="@+id/image"
-
                 android:padding="8dp"
                 android:text="insert movie"
                 tools:layout_constrainedWidth="true"
@@ -65,13 +60,8 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
                 android:layout_below="@+id/name"
-
                 android:layout_marginStart="1dp"
-
-
                 android:layout_toEndOf="@+id/image"
                 android:padding="8dp"
                 android:text="23 augustus 2021" />
