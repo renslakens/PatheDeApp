@@ -22,6 +22,7 @@ import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.Review;
+import com.groep3.pathedeapp.domain.UserAuthenticate;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
@@ -121,8 +122,10 @@ public class MovieDetail extends AppCompatActivity {
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met session id.
-                if(LoginActivity.SESSION_ID == "") {
+                //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met login session id.
+                //Werkt nog niet
+                UserAuthenticate guestSession = new UserAuthenticate();
+                if(LoginActivity.SESSION_ID == guestSession.getGuestSessionID()) {
                     //Toast bericht dat er niet ingelogd is
                     Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
                 } else {

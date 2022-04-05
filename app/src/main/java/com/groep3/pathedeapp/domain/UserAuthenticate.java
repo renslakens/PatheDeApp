@@ -41,6 +41,10 @@ public class UserAuthenticate {
         return guestSessionID;
     }
 
+    public void setGuestSessionID(String guestSessionID) {
+        this.guestSessionID = guestSessionID;
+    }
+
     @Override
     public String toString() {
         return "UserAuthenticate{" +

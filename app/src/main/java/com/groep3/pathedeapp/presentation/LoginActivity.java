@@ -141,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     UserAuthenticate guestSession = response.body();
                     SESSION_ID = guestSession.getGuestSessionID();
+                    guestSession.setGuestSessionID(SESSION_ID);
                     Log.d("Created Session", SESSION_ID);
                     Toast.makeText(getApplicationContext(), "Successfully logged in as guest", Toast.LENGTH_SHORT).show();
                     Log.d("Login", "Signed in as guest");
