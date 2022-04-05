@@ -10,16 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.groep3.pathedeapp.R;
+import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.Movie;
 
 import java.util.LinkedList;
 
 public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
-    private LinkedList<Movie> mListList;
+    private LinkedList<List> mListList;
     private LayoutInflater mInflater;
     private Context context;
 
-    public ListList(Context context, LinkedList<Movie> listList) {
+    public ListList(Context context, LinkedList<List> listList) {
         mInflater = LayoutInflater.from(context);
         this.mListList = listList;
         this.context = context;
@@ -37,7 +38,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
         }
     }
 
-    public void setListList(LinkedList<Movie> ListList) {
+    public void setListList(LinkedList<List> ListList) {
         this.mListList = ListList;
         notifyDataSetChanged();
     }
@@ -51,7 +52,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ListList.ListViewHolder holder, int position) {
-        Movie mCurrent = mListList.get(position);
+        List mCurrent = mListList.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -64,7 +65,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
             }
         });
 
-        holder.listTitle.setText(mCurrent.getTitle());
+        holder.listTitle.setText(mCurrent.getName());
     }
 
     @Override
