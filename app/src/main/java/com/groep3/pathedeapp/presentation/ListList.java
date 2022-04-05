@@ -56,7 +56,7 @@ public class ListList  extends RecyclerView.Adapter<ListList.ListViewHolder> {
     @Override
     public ListList.ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 //        View mItemView = mInflater.inflate(R.layout.movie_list_item, parent, false);
-//        return new ListList.ListViewHolder(mItemView, this);
+//        return new ListViewHolder(mItemView, this);
         return null;
     }
 
