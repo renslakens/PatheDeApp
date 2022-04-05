@@ -1,10 +1,12 @@
 package com.groep3.pathedeapp.presentation;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,10 +22,13 @@ import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.Genre;
+import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.LoadedReviews;
+import com.groep3.pathedeapp.domain.LoadedVideos;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.Review;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
+import com.groep3.pathedeapp.domain.Video;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,6 +49,9 @@ public class MovieDetail extends AppCompatActivity {
     private int totalPages = 1;
     private ArrayList<Genre> genres;
     private ArrayList<String> genreNames = new ArrayList<String>();
+    private ArrayList<Video> videos;
+    private LoadedVideos loadedVideos;
+    private String trailerLink;
 
 
     @Override
@@ -81,6 +89,8 @@ public class MovieDetail extends AppCompatActivity {
         TextView genre = (TextView) findViewById(R.id.detail_genre);
         TextView description = (TextView) findViewById(R.id.detail_description);
         TextView length = (TextView) findViewById(R.id.detail_length);
+        Button trailer = (Button) findViewById(R.id.detail_trailer);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -117,7 +127,53 @@ public class MovieDetail extends AppCompatActivity {
             }
         });
 
+        Call<LoadedVideos> videosCall = apiInterface.getVideos(Integer.parseInt(getIntent().getStringExtra("movieId")), "11db3143a380ada0de96fe9028cbc905");
+
+        videosCall.enqueue(new Callback<LoadedVideos>() {
+
+
+            @Override
+            public void onResponse(Call<LoadedVideos> call, Response<LoadedVideos> response) {
+                loadedVideos = response.body();
+                Log.d("videos", loadedVideos.toString());
+                videos = (ArrayList<Video>) loadedVideos.getVideos();
+                String type = "wrong";
+                String site = "wrong";
+                if (videos.size() > 1) {
+                    Log.d("size", String.valueOf(videos.size()));
+                    for (int i = 0; i < videos.size(); i++) {
+                        type = videos.get(i).getType();
+                        site = videos.get(i).getSite();
+//                        https://www.youtube.com/watch?v=
+                        trailerLink = "vnd.youtube://" + videos.get(i).getKey();
+                        if (type.equals("Trailer") && site.equals("YouTube")) {
+                            Log.d("current trailer", trailerLink.toString());
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoadedVideos> call, Throwable t) {
+
+            }
+        });
+
         getAllReviews();
+
+        trailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!(trailerLink == null)) {
+                    Log.d(TAG, "starting youtube");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(trailerLink));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Movie does not have any trailers", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +191,7 @@ public class MovieDetail extends AppCompatActivity {
             public void onClick(View view) {
                 //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met login session id.
                 UserAuthenticate guestSession = new UserAuthenticate();
-                if (LoginActivity.SESSION_ID == LoginActivity.GUEST_SESSION_ID) {
+                if (LoginActivity.SESSION_ID == guestSession.getGuestSessionID()) {
                     //Toast bericht dat er niet ingelogd is
                     Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
                 } else {

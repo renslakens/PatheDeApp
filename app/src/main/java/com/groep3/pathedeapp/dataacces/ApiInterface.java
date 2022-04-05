@@ -2,6 +2,7 @@ package com.groep3.pathedeapp.dataacces;
 
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.LoadedReviews;
+import com.groep3.pathedeapp.domain.LoadedVideos;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
 
@@ -29,6 +30,12 @@ public interface ApiInterface {
     //Get movie by ID
     @GET("movie/{movie_id}")
     Call<Movie> getMovie(
+            @Path("movie_id") int id,
+            @Query("api_key") String apiKey
+    );
+
+    @GET("movie/{movie_id}/videos")
+    Call<LoadedVideos> getVideos(
             @Path("movie_id") int id,
             @Query("api_key") String apiKey
     );
