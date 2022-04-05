@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filterReleaseYear(1);
+                filterList(1);
             }
         });
 
@@ -191,26 +191,32 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-        SearchView simpleSearchView = (SearchView) findViewById(R.id.search_bar); // inititate a search view
-        CharSequence query = simpleSearchView.getQuery(); // get the query string currently in the text field
+        mRecyclerView.stopScroll();
+        pageNumber = 1;
         Log.d(TAG, s);
+        setAdapter();
         mMovieList.clear();
         searchMovie(s);
         genreSpinner.setVisibility(mRecyclerView.GONE);
         ratingSpinner.setVisibility(mRecyclerView.GONE);
+        filterButton.setVisibility(mRecyclerView.GONE);
 
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
+        mRecyclerView.stopScroll();
         if (s.isEmpty()) {
+            pageNumber = 1;
+            setAdapter();
             call = sortBy + descending;
             mMovieList.clear();
             s = null;
             getAllMovies(call);
             genreSpinner.setVisibility(mRecyclerView.VISIBLE);
             ratingSpinner.setVisibility(mRecyclerView.VISIBLE);
+            filterButton.setVisibility(mRecyclerView.VISIBLE);
         }
         return false;
     }
@@ -312,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-    public void filterReleaseYear(Integer mode) {
+    public void filterList(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
         newFragment.show(getSupportFragmentManager(), "d");
     }
