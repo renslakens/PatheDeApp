@@ -121,7 +121,7 @@ public class MovieDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met session id.
-                Intent intent = new Intent(view.getContext(), ListCreateActivity.class);
+                Intent intent = new Intent(view.getContext(), ListActivity.class);
                 view.getContext().startActivity(intent);
             }
         });

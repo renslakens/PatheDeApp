@@ -22,6 +22,7 @@ public class ListCreateActivity extends AppCompatActivity {
     }
 
     public void createList(View view) {
+        //Moet list in recyclerview zetten en daarna doorsturen naar ListActivity class
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
