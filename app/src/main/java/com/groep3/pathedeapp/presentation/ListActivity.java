@@ -16,6 +16,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
     }
 
+    //Nieuwe lijst aanmaken met onClick
     public void createNewList(View view) {
         Intent intent = new Intent(this, ListCreateActivity.class);
         startActivity(intent);

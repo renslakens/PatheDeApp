@@ -135,9 +135,8 @@ public class MovieDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met login session id.
-                //Werkt nog niet
                 UserAuthenticate guestSession = new UserAuthenticate();
-                if(LoginActivity.SESSION_ID == guestSession.getGuestSessionID()) {
+                if(LoginActivity.SESSION_ID == LoginActivity.GUEST_SESSION_ID) {
                     //Toast bericht dat er niet ingelogd is
                     Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
                 } else {

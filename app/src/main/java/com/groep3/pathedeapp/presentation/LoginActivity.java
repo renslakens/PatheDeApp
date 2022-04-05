@@ -24,6 +24,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
     public static String SESSION_ID = "";
+    public static String GUEST_SESSION_ID = "";
 
     private UserAuthenticate requestToken = new UserAuthenticate();
     private UserAuthenticate requestTokenOnLogin = new UserAuthenticate();
@@ -141,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     UserAuthenticate guestSession = response.body();
                     SESSION_ID = guestSession.getGuestSessionID();
-                    guestSession.setGuestSessionID(SESSION_ID);
+                    GUEST_SESSION_ID = SESSION_ID;
                     Log.d("Created Session", SESSION_ID);
                     Toast.makeText(getApplicationContext(), "Successfully logged in as guest", Toast.LENGTH_SHORT).show();
                     Log.d("Login", "Signed in as guest");
