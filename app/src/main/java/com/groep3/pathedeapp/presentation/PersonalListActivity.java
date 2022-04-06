@@ -14,8 +14,10 @@ import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.LoadedLists;
+import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.User;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 import retrofit2.Call;
@@ -23,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PersonalListActivity extends AppCompatActivity {
-    private final LinkedList<List> mListList = new LinkedList<>();
+    private final LinkedList<Movie> mListList = new LinkedList<>();
     private PersonalListList mAdapter;
     private RecyclerView mRecyclerView;
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -45,7 +47,7 @@ public class PersonalListActivity extends AppCompatActivity {
     }
 
     private void setAdapter() {
-        mRecyclerView = findViewById(R.id.listRecyclerView);
+        mRecyclerView = findViewById(R.id.personalListRecyclerview);
         mAdapter = new PersonalListList(this, mListList);
         mRecyclerView.setAdapter(mAdapter);
         int gridColumnCount = 1;
@@ -56,21 +58,26 @@ public class PersonalListActivity extends AppCompatActivity {
 
     public void getList() {
 
-        Call<LoadedLists> listCall = apiInterface.getList(getIntent().getIntExtra("list_id", 5), "11db3143a380ada0de96fe9028cbc905");
-        listCall.enqueue(new Callback<LoadedLists>() {
+        Call<com.groep3.pathedeapp.domain.List> listCall = apiInterface.getList(getIntent().getIntExtra("list_id", 5), "11db3143a380ada0de96fe9028cbc905");
+        listCall.enqueue(new Callback<List>() {
             @Override
-            public void onResponse(Call<LoadedLists> call, Response<LoadedLists> response) {
-                Log.d("test", response.body().toString());
-                Log.d("Error occurred", "failure " + response.headers() + response.errorBody().toString());
-                LoadedLists lists = response.body();
-                Log.d("test", String.valueOf(lists.getLists().get(1)));
-//                mListList.addAll(lists.getLists());
-//                setAdapter();
+            public void onResponse(Call<List> call, Response<List> response) {
+                //                Log.d("test", response.body().toString());
+
+                    Log.d("Error occurred", "failure " + response.headers() + response.raw());
+
+                List lists = response.body();
+
+                mListList.addAll(lists.getItems());
+                for (int i = 0; i < mListList.size(); i++) {
+                    Log.d("tag", "1" + mListList.size() + lists.getItemCount());
+                }
+                setAdapter();
             }
 
             @Override
-            public void onFailure(Call<LoadedLists> call, Throwable t) {
-                Log.d("error", "error");
+            public void onFailure(Call<List> call, Throwable t) {
+
             }
         });
 

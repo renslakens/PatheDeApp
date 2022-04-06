@@ -18,10 +18,10 @@ public class List {
     private int favoriteCount;
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
     @SerializedName("items")
     @Expose
-    private ArrayList<Movie> items;
+    private java.util.List<Movie> items = null;
     @SerializedName("item_count")
     @Expose
     private int itemCount;
@@ -47,11 +47,11 @@ public class List {
         return favoriteCount;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public ArrayList<Movie> getItems() {
+    public java.util.List<Movie> getItems() {
         return items;
     }
 

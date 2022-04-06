@@ -120,7 +120,7 @@ public interface ApiInterface {
     );
 
     @GET("list/{list_id}")
-    Call<LoadedLists> getList(
+    Call<List> getList(
             @Path("list_id") Integer id,
             @Query("api_key") String key
     );

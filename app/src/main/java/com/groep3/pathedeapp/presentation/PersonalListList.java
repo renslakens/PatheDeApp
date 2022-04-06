@@ -14,16 +14,17 @@ import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.List;
+import com.groep3.pathedeapp.domain.Movie;
 
 import java.util.LinkedList;
 
 public class PersonalListList extends RecyclerView.Adapter<PersonalListList.ListViewHolder>{
-    private LinkedList<List> mPersonalListList;
+    private LinkedList<Movie> mPersonalListList;
     private LayoutInflater mInflater;
     private Context context;
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-    public PersonalListList(Context context, LinkedList<List> listList) {
+    public PersonalListList(Context context, LinkedList<Movie> listList) {
         mInflater = LayoutInflater.from(context);
         this.mPersonalListList = listList;
         this.context = context;
@@ -42,7 +43,7 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
         }
     }
 
-    public void setPersonalListList(LinkedList<List> ListList) {
+    public void setPersonalListList(LinkedList<Movie> ListList) {
         this.mPersonalListList = ListList;
         notifyDataSetChanged();
     }
@@ -56,19 +57,19 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
 
     @Override
     public void onBindViewHolder(@NonNull PersonalListList.ListViewHolder holder, int position) {
-        List mCurrent = mPersonalListList.get(position);
+        Movie mCurrent = mPersonalListList.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent moviePage = new Intent(context, MovieDetail.class);
-                moviePage.putExtra("movieId", mCurrent.getId().toString());
-                context.startActivity(moviePage);
+//                Intent moviePage = new Intent(context, MovieDetail.class);
+//                moviePage.putExtra("movieId", mCurrent.getId().toString());
+//                context.startActivity(moviePage);
             }
         });
 
-        holder.listTitle.setText(mCurrent.getName());
+        holder.listTitle.setText(mCurrent.getId().toString());
     }
 
     @Override
