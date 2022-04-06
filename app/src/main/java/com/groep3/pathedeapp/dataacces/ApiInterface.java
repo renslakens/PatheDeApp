@@ -4,12 +4,16 @@ import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.LoadedVideos;
 import com.groep3.pathedeapp.domain.Movie;
+import com.groep3.pathedeapp.domain.Rating;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -85,4 +89,26 @@ public interface ApiInterface {
     Call<UserAuthenticate> newGuestSession(
             @Query("api_key") String apiKey
     );
+//
+//    @POST ("movie/{movie_id}/rating")
+//    Call<Rating> rateMovie(
+//            @Path("movie_id") Integer id,
+//            @Query("api_key") String apiKey,
+//            @Body Rating rating,
+//            @Header("json") String header
+//    );
+
+
+    @POST("movie/{movie_id}/rating")
+    @FormUrlEncoded
+
+    Call<Rating> rateMovie(
+            @Path("movie_id") Integer path,
+            @Query("api_key") String key,
+            @Query("guest_session_id") String guestId,
+            @Query("session_id") String id,
+            @Field("value") Number rating
+
+    );
+
 }

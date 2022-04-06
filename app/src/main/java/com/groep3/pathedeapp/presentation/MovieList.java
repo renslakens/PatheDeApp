@@ -22,11 +22,15 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
     private LinkedList<Movie> mMovieList;
     private LayoutInflater mInflater;
     private Context context;
+    private String session_id;
+    private Boolean loggedIn;
 
-    public MovieList(Context context, LinkedList<Movie> movieList) {
+    public MovieList(Context context, LinkedList<Movie> movieList, String session_id, Boolean loggedIn) {
         mInflater = LayoutInflater.from(context);
         this.mMovieList = movieList;
         this.context = context;
+        this.session_id = session_id;
+        this.loggedIn = loggedIn;
     }
 
     static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -69,6 +73,8 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
             public void onClick(View view) {
                 Intent moviePage = new Intent(context, MovieDetail.class);
                 moviePage.putExtra("movieId", mCurrent.getId().toString());
+                moviePage.putExtra("session_id", session_id);
+                moviePage.putExtra("logged_in", loggedIn);
                 context.startActivity(moviePage);
             }
         });

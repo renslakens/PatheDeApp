@@ -134,7 +134,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private void setAdapter() {
         mRecyclerView = findViewById(R.id.recyclerView);
-        mAdapter = new MovieList(this, mMovieList);
+        Log.d(TAG, getIntent().getStringExtra("session_id"));
+        mAdapter = new MovieList(this, mMovieList, getIntent().getStringExtra("session_id"), getIntent().getBooleanExtra("logged_in", true));
         mRecyclerView.setAdapter(mAdapter);
         int gridColumnCount = 1;
 

@@ -26,11 +26,15 @@ import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.LoadedVideos;
 import com.groep3.pathedeapp.domain.Movie;
+import com.groep3.pathedeapp.domain.Rating;
 import com.groep3.pathedeapp.domain.Review;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
 import com.groep3.pathedeapp.domain.Video;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -52,6 +56,8 @@ public class MovieDetail extends AppCompatActivity {
     private ArrayList<Video> videos;
     private LoadedVideos loadedVideos;
     private String trailerLink;
+    private String sessionId = null;
+    private String guestSessionId = null;
 
 
     @Override
@@ -90,7 +96,7 @@ public class MovieDetail extends AppCompatActivity {
         TextView description = (TextView) findViewById(R.id.detail_description);
         TextView length = (TextView) findViewById(R.id.detail_length);
         Button trailer = (Button) findViewById(R.id.detail_trailer);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        ImageButton rateMovie = (ImageButton) findViewById(R.id.detail_favorite_button);
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -102,7 +108,6 @@ public class MovieDetail extends AppCompatActivity {
                 movie = response.body();
                 name.setText(movie.getTitle());
                 score.setText(movie.getVoteAverage().toString());
-//                             genre.setText( movie.getGenreIds().toString());
                 genres = (ArrayList<Genre>) movie.genres();
                 for (int i = 0; i < genres.size(); i++) {
                     genreNames.add(genres.get(i).getName());
@@ -120,10 +125,48 @@ public class MovieDetail extends AppCompatActivity {
                 Log.d(TAG, movie.getTitle());
                 Log.d(TAG, response.body().toString());
                 Log.d(TAG, response.toString());
+                Log.d(TAG, getIntent().getStringExtra("session_id"));
             }
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
+            }
+        });
+
+        if (getIntent().getBooleanExtra("logged_in", true)){
+            sessionId = getIntent().getStringExtra("session_id");
+        }else{
+            guestSessionId = getIntent().getStringExtra("session_id");
+        }
+
+        rateMovie.setOnClickListener(new View.OnClickListener() {
+            Number number = 8.5;
+            @Override
+            public void onClick(View view) {
+
+
+
+                Call<Rating> ratingCall = apiInterface.rateMovie(movie.getId(), "11db3143a380ada0de96fe9028cbc905", guestSessionId, sessionId ,number);
+
+                ratingCall.enqueue(new Callback<Rating>() {
+                    @Override
+                    public void onResponse(Call<Rating> call, Response<Rating> response) {
+                        if(response.isSuccessful()) {
+                            Log.d("Rating successful", response.body().toString() + response.message());
+                        } else {
+                            try {
+                                Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Rating> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
