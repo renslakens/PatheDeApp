@@ -62,6 +62,13 @@ public class ListActivity extends AppCompatActivity {
                 User user = response.body();
                 Log.d("test", String.valueOf(user.getId()));
                 userId = user.getId();
+//                try {
+//                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                mListList.addAll(lists.getLists());
+//                setAdapter();
             }
 
             @Override
@@ -82,14 +89,18 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(Call<LoadedLists> call, Response<LoadedLists> response) {
                 LoadedLists lists = response.body();
                 Log.d("test", response.body().toString());
-
+//                try {
+//                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
                 mListList.addAll(lists.getLists());
                 setAdapter();
             }
 
             @Override
             public void onFailure(Call<LoadedLists> call, Throwable t) {
-
+//                Log.d("test", String.valueOf(t));
             }
         });
 

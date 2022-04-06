@@ -26,7 +26,6 @@ import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

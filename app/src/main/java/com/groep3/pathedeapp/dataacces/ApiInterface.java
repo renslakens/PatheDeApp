@@ -11,12 +11,9 @@ import com.groep3.pathedeapp.domain.User;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -95,13 +92,35 @@ public interface ApiInterface {
 
     @POST("movie/{movie_id}/rating")
     @FormUrlEncoded
-
     Call<Rating> rateMovie(
             @Path("movie_id") Integer path,
             @Query("api_key") String key,
             @Query("guest_session_id") String guestId,
             @Query("session_id") String id,
             @Field("value") Number rating
+
+    );
+
+
+    @POST("list")
+    @FormUrlEncoded
+    Call<List> createList(
+            @Query("api_key") String apiKey,
+            @Query("name") String key,
+            @Query("description") String guestId,
+            @Query("language") String id
+
+    );
+
+    @POST("list/{list_id}/add_item")
+    @FormUrlEncoded
+    Call<LoadedLists> addItem(
+            @Path("list_id") Integer path,
+            @Query("api_key") String key,
+            @Query("session_id") String id,
+            @Field("name") String name,
+            @Field("description") String description,
+            @Field("language") String language
 
     );
 
