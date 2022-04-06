@@ -1,6 +1,7 @@
 package com.groep3.pathedeapp.dataacces;
 
 import com.groep3.pathedeapp.domain.List;
+import com.groep3.pathedeapp.domain.LoadedGenres;
 import com.groep3.pathedeapp.domain.LoadedLists;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.LoadedReviews;
@@ -28,7 +29,13 @@ public interface ApiInterface {
             @Query("vote_count.gte") Integer voteCount,
             @Query("primary_release_year") Integer year,
             @Query("vote_average.gte") Integer voteAverage,
-            @Query("with_original_language") String language
+            @Query("with_original_language") String language,
+            @Query("with_genres") String genre
+    );
+
+    @GET("genre/movie/list")
+    Call<LoadedGenres> getGenres(
+            @Query("api_key") String key
     );
 
     //Get movie by ID

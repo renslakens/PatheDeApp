@@ -57,11 +57,15 @@ public class FilterOption extends DialogFragment {
                 inputBox.setHint("nl");
                 break;
             case 4:
-                Log.d("test", "case 4");
                 inputBox.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 inputBox.setHint("8.5");
                 addFilterButton.setText(R.string.confirm_rating_button);
                 break;
+            case 5:
+                inputBox.setInputType(InputType.TYPE_CLASS_TEXT);
+                inputBox.setHint("action");
+                break;
+
         }
 
         cancelFilterButton.setOnClickListener(new View.OnClickListener() {

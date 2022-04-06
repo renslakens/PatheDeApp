@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -22,10 +23,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
+import com.groep3.pathedeapp.domain.Genre;
+import com.groep3.pathedeapp.domain.LoadedGenres;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private String originalLanguage = null;
     private Integer filterMode = null;
     private ImageView filterButton;
+    private String genre = null;
+    private Integer genreSize = null;
+    private final LinkedList<Genre> genres = new LinkedList<>();
     private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
 
     private SearchView editsearch;
@@ -118,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         editsearch.setOnQueryTextListener(this);
 
         context = getApplicationContext();
+        getGenres();
 
     }
 
@@ -151,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void getAllMovies(String sortBy) {
         mSwipeRefreshLayout.setRefreshing(true);
 
-        Call<LoadedMovies> call = apiInterface.getMovies(apiKey, pageNumber, sortBy, voteCount, year, voteAverage, originalLanguage);
+        Call<LoadedMovies> call = apiInterface.getMovies(apiKey, pageNumber, sortBy, voteCount, year, voteAverage, originalLanguage, genre);
 
         call.enqueue(new Callback<LoadedMovies>() {
             @Override
@@ -236,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             voteCount = null;
             year = null;
             voteAverage = null;
+            genre = null;
             originalLanguage = null;
             pageNumber = 1;
             call = sortBy + descending;
@@ -258,6 +268,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 break;
             case 3:
                 originalLanguage = input;
+                break;
+            case 5:
+                for (int i = 0; i < genreSize; i++) {
+                    if (input.toLowerCase().equals(genres.get(i).getName().toLowerCase(Locale.ROOT))){
+                        genre = genres.get(i).getId().toString();
+                        break;
+                    }
+                }
                 break;
         }
         pageNumber = 1;
@@ -353,5 +371,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public void filterList(Integer mode) {
         DialogFragment newFragment = new ChooseFilterDialog(mode);
         newFragment.show(getSupportFragmentManager(), TAG);
+    }
+
+    private void getGenres() {
+        mSwipeRefreshLayout.setRefreshing(true);
+
+        Call<LoadedGenres> call = apiInterface.getGenres(apiKey);
+
+        call.enqueue(new Callback<LoadedGenres>() {
+            @Override
+            public void onResponse(Call<LoadedGenres> call, Response<LoadedGenres> response) {
+                LoadedGenres allGenres = response.body();
+                genres.addAll(allGenres.getGenres());
+                genreSize = allGenres.getSize();
+
+            }
+
+            @Override
+            public void onFailure(Call<LoadedGenres> call, Throwable t) {
+
+            }
+        });
     }
 }

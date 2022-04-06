@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("Login successful", response.body().toString());
                             getSessionID();
                         } else {
+                            Toast.makeText(getApplicationContext(), R.string.incorrect_login, Toast.LENGTH_SHORT).show();
                             Log.d("Error occurred", "failure " + response.headers());
                         }
                     }

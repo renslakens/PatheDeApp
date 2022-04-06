@@ -32,7 +32,7 @@ public class ChooseFilterDialog extends DialogFragment implements FilterOption.O
 
     public ChooseFilterDialog.OnInputListenerDialog onInputListenerDialog;
 
-    private TextView voteCountButton, releaseYearButton, voteAverageButton, withPeopleButton, clearFilterButton, doneButton;
+    private TextView voteCountButton, releaseYearButton, voteAverageButton, withPeopleButton, clearFilterButton, doneButton, genreButton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class ChooseFilterDialog extends DialogFragment implements FilterOption.O
         withPeopleButton = view.findViewById(R.id.original_language);
         doneButton = view.findViewById(R.id.add_button_filter_dialog);
         clearFilterButton = view.findViewById(R.id.clear_filters_button);
+        genreButton = view.findViewById(R.id.genre_filter);
 
         voteCountButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +87,18 @@ public class ChooseFilterDialog extends DialogFragment implements FilterOption.O
             public void onClick(View v) {
 
                 mode = 3;
+                onInputListenerDialog.sendInput(mode);
+                DialogFragment newFragment = new FilterOption(mode);
+                newFragment.show(getChildFragmentManager(), "filter");
+
+            }
+        });
+
+        genreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mode = 5;
                 onInputListenerDialog.sendInput(mode);
                 DialogFragment newFragment = new FilterOption(mode);
                 newFragment.show(getChildFragmentManager(), "filter");
