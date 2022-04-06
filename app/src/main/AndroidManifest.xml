@@ -21,6 +21,8 @@
         <activity
             android:name=".presentation.MovieDetail"
             android:exported="false" />
+        <activity android:name=".presentation.PersonalListActivity"
+            android:exported="false"/>
         <activity
             android:name=".presentation.SplashActivity"
             android:exported="true">

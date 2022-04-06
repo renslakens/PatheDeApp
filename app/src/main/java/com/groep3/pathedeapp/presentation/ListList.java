@@ -1,6 +1,7 @@
 package com.groep3.pathedeapp.presentation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.groep3.pathedeapp.domain.LoadedLists;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Rating;
 import com.groep3.pathedeapp.domain.Review;
+import com.groep3.pathedeapp.domain.User;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -32,12 +34,15 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
     private LayoutInflater mInflater;
     private Context context;
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+    private Integer userId;
+    private String sessionId;
 
-    public ListList(Context context, LinkedList<List> listList) {
+    public ListList(Context context, LinkedList<List> listList, Integer userId, String sessionId) {
         mInflater = LayoutInflater.from(context);
         this.mListList = listList;
         this.context = context;
-//        getLists();
+        this.userId = userId;
+        this.sessionId = sessionId;
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
@@ -73,9 +78,10 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
 
             @Override
             public void onClick(View view) {
-//                Intent moviePage = new Intent(context, MovieDetail.class);
-//                moviePage.putExtra("movieId", mCurrent.getId().toString());
-//                context.startActivity(moviePage);
+                Intent personalList = new Intent(context, PersonalListActivity.class);
+                personalList.putExtra("session_id", sessionId);
+                personalList.putExtra("userId", userId);
+                context.startActivity(personalList);
             }
         });
 
@@ -87,26 +93,5 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
         return mListList.size();
     }
 
-//    public void getLists() {
-//
-//        Call<LoadedLists> listCall = apiInterface.getLists("Niekelodius", "11db3143a380ada0de96fe9028cbc905");
-//
-//        listCall.enqueue(new Callback<LoadedLists>() {
-//
-//            @Override
-//            public void onResponse(Call<LoadedLists> call, Response<LoadedLists> response) {
-//                LoadedLists lists = response.body();
-//                mListList.addAll(lists.getLists());
-//
-//                setListList(mListList);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoadedLists> call, Throwable t) {
-//                Log.d("test", String.valueOf(t));
-//            }
-//        });
-//
-//    }
 
 }
