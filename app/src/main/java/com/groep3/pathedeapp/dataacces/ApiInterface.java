@@ -101,15 +101,14 @@ public interface ApiInterface {
 
     );
 
-
     @POST("list")
     @FormUrlEncoded
     Call<List> createList(
             @Query("api_key") String apiKey,
-            @Query("name") String key,
-            @Query("description") String guestId,
-            @Query("language") String id
-
+            @Query("session_id") String id,
+            @Field("name") String key,
+            @Field("description") String guestId,
+            @Field("language") String language
     );
 
     @POST("list/{list_id}/add_item")
@@ -118,10 +117,7 @@ public interface ApiInterface {
             @Path("list_id") Integer path,
             @Query("api_key") String key,
             @Query("session_id") String id,
-            @Field("name") String name,
-            @Field("description") String description,
-            @Field("language") String language
-
+            @Field("media_id") String media_id
     );
 
     @GET("account")
