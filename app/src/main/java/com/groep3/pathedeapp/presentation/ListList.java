@@ -39,13 +39,15 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
     private Integer userId;
     private String sessionId;
+    private boolean loggedIn;
 
-    public ListList(Context context, LinkedList<List> listList, Integer userId, String sessionId) {
+    public ListList(Context context, LinkedList<List> listList, Integer userId, String sessionId, Boolean loggedIn) {
         mInflater = LayoutInflater.from(context);
         this.mListList = listList;
         this.context = context;
         this.userId = userId;
         this.sessionId = sessionId;
+        this.loggedIn = loggedIn;
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
@@ -88,6 +90,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
                 Intent personalList = new Intent(context, PersonalListActivity.class);
                 personalList.putExtra("list_id", mCurrent.getId());
                 personalList.putExtra("session_id", sessionId);
+                personalList.putExtra("logged_in", loggedIn);
                 personalList.putExtra("userId", userId);
                 context.startActivity(personalList);
             }
