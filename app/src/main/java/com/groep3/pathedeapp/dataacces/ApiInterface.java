@@ -105,10 +105,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<List> createList(
             @Query("api_key") String apiKey,
-            @Query("session_id") String id,
-            @Field("name") String name,
-            @Field("description") String description,
-            @Field("language") String language
+            @Query("session_id") String id
+//            @Field("name") String name,
+//            @Field("description") String description,
+//            @Field("language") String language
     );
 
     @POST("list/{list_id}/add_item")
@@ -126,7 +126,6 @@ public interface ApiInterface {
             @Query("session_id") String session
     );
 
-
     @GET("account/{account_id}/lists")
     Call<LoadedLists> getLists(
             @Path("account_id") Integer accountId,
@@ -139,5 +138,6 @@ public interface ApiInterface {
             @Path("list_id") Integer id,
             @Query("api_key") String key
     );
+
 
 }
