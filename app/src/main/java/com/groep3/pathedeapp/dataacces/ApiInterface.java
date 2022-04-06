@@ -94,7 +94,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Rating> rateMovie(
             @Path("movie_id") Integer path,
-            @Query("api_key") String apiKey,
+            @Query("api_key") String key,
             @Query("guest_session_id") String guestId,
             @Query("session_id") String id,
             @Field("value") Number rating
@@ -115,14 +115,14 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<LoadedLists> addItem(
             @Path("list_id") Integer path,
-            @Query("api_key") String apiKey,
+            @Query("api_key") String key,
             @Query("session_id") String id,
             @Field("media_id") String media_id
     );
 
     @GET("account")
     Call<User> getAccount(
-            @Query("api_key") String apiKey,
+            @Query("api_key") String key,
             @Query("session_id") String session
     );
 
@@ -130,14 +130,14 @@ public interface ApiInterface {
     @GET("account/{account_id}/lists")
     Call<LoadedLists> getLists(
             @Path("account_id") Integer accountId,
-            @Query("api_key") String apiKey,
+            @Query("api_key") String key,
             @Query("session_id") String session
     );
 
     @GET("list/{list_id}")
     Call<List> getList(
             @Path("list_id") Integer id,
-            @Query("api_key") String apiKey
+            @Query("api_key") String key
     );
 
 }
