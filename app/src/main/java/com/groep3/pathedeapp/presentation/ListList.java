@@ -79,6 +79,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent personalList = new Intent(context, PersonalListActivity.class);
+                personalList.putExtra("list_id", mCurrent.getId());
                 personalList.putExtra("session_id", sessionId);
                 personalList.putExtra("userId", userId);
                 context.startActivity(personalList);

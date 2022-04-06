@@ -32,10 +32,10 @@ public class PersonalListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_personal_list);
 //        getAccount();
         userId = getIntent().getIntExtra("userId", 5);
-        getLists();
+        getList();
     }
 
     //Nieuwe lijst aanmaken met onClick
@@ -53,54 +53,24 @@ public class PersonalListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
     }
 
-//    private void getAccount() {
-//        Call<User> userCall = apiInterface.getAccount("11db3143a380ada0de96fe9028cbc905", getIntent().getStringExtra("session_id"));
-//
-//        userCall.enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                User user = response.body();
-//                Log.d("test", String.valueOf(user.getId()));
-//                userId = user.getId();
-////                try {
-////                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-////                } catch (IOException e) {
-////                    e.printStackTrace();
-////                }
-////                mListList.addAll(lists.getLists());
-////                setAdapter();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//
-//            }
-//        });
-//    }
 
+    public void getList() {
 
-    public void getLists() {
-
-        Call<LoadedLists> listCall = apiInterface.getLists(userId, "11db3143a380ada0de96fe9028cbc905", getIntent().getStringExtra("session_id"));
-
+        Call<LoadedLists> listCall = apiInterface.getList(getIntent().getIntExtra("list_id", 5), "11db3143a380ada0de96fe9028cbc905");
         listCall.enqueue(new Callback<LoadedLists>() {
-
             @Override
             public void onResponse(Call<LoadedLists> call, Response<LoadedLists> response) {
-                LoadedLists lists = response.body();
                 Log.d("test", response.body().toString());
-//                try {
-//                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-                mListList.addAll(lists.getLists());
-                setAdapter();
+                Log.d("Error occurred", "failure " + response.headers() + response.errorBody().toString());
+                LoadedLists lists = response.body();
+                Log.d("test", String.valueOf(lists.getLists().get(1)));
+//                mListList.addAll(lists.getLists());
+//                setAdapter();
             }
 
             @Override
             public void onFailure(Call<LoadedLists> call, Throwable t) {
-//                Log.d("test", String.valueOf(t));
+                Log.d("error", "error");
             }
         });
 

@@ -36,7 +36,7 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
 
         public ListViewHolder(View itemView, PersonalListList adapter) {
             super(itemView);
-            listTitle = itemView.findViewById(R.id.list);
+            listTitle = itemView.findViewById(R.id.personal_item);
 
             this.mAdapter = adapter;
         }
@@ -50,7 +50,7 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
     @NonNull
     @Override
     public PersonalListList.ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = mInflater.inflate(R.layout.list_list_item, parent, false);
+        View mItemView = mInflater.inflate(R.layout.personal_list_item, parent, false);
         return new PersonalListList.ListViewHolder(mItemView, this);
     }
 

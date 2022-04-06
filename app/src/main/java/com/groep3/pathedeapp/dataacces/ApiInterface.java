@@ -119,5 +119,10 @@ public interface ApiInterface {
             @Query("session_id") String session
     );
 
+    @GET("list/{list_id}")
+    Call<LoadedLists> getList(
+            @Path("list_id") Integer id,
+            @Query("api_key") String key
+    );
 
 }

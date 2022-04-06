@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-anydpi/bookmark_icon.xml" value="0.269" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-anydpi/favorite_icon.xml" value="0.269" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-anydpi/favourite_icon.xml" value="0.269" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-anydpi/filter_icon.xml" value="0.269" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-anydpi/rating_icon.xml" value="0.269" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-anydpi/share_icon.xml" value="0.269" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.269" />
@@ -22,6 +24,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/layout/movie_list.xml" value="0.264" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/layout/movie_list_item.xml" value="0.4" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/layout/movie_review.xml" value="0.2640625" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/layout/personal_list_item.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/layout/search_movie_list.xml" value="0.2640625" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/layout/toolbar.xml" value="0.2640625" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/PatheDeApp/app/src/main/res/menu/menu.xml" value="0.26614583333333336" />
