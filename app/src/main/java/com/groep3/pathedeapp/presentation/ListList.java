@@ -2,10 +2,12 @@ package com.groep3.pathedeapp.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Rating;
 import com.groep3.pathedeapp.domain.Review;
 import com.groep3.pathedeapp.domain.User;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -47,12 +50,16 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
         public final TextView listTitle;
+        public final TextView listDescription;
+        public final ImageView listImage;
 
         final ListList mAdapter;
 
         public ListViewHolder(View itemView, ListList adapter) {
             super(itemView);
             listTitle = itemView.findViewById(R.id.list);
+            listImage = itemView.findViewById(R.id.list_item_image);
+            listDescription = itemView.findViewById(R.id.listDescription);
 
             this.mAdapter = adapter;
         }
@@ -87,6 +94,16 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
         });
 
         holder.listTitle.setText(mCurrent.getName());
+        holder.listDescription.setText(mCurrent.getDescription());
+        if (mCurrent.getPosterPath() != null) {
+            Picasso.with(context)
+                    .load(Uri.parse("https://image.tmdb.org/t/p/w500/" + mCurrent.getPosterPath()))
+                    .into(holder.listImage);
+        } else {
+            Picasso.with(context).load(R.drawable.image_placeholder).into(holder.listImage);
+        }
+
+
     }
 
     @Override
