@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -57,6 +59,8 @@ public class PersonalListActivity extends AppCompatActivity {
 
 
     public void getList() {
+        TextView listName = findViewById(R.id.listName);
+        ImageButton shareButton = findViewById(R.id.detail_share_button);
 
         Call<com.groep3.pathedeapp.domain.List> listCall = apiInterface.getList(getIntent().getIntExtra("list_id", 5), "11db3143a380ada0de96fe9028cbc905");
         listCall.enqueue(new Callback<List>() {
@@ -69,9 +73,17 @@ public class PersonalListActivity extends AppCompatActivity {
                 List lists = response.body();
 
                 mListList.addAll(lists.getItems());
-                for (int i = 0; i < mListList.size(); i++) {
-                    Log.d("tag", "1" + mListList.size() + lists.getItemCount());
-                }
+                listName.setText(lists.getName());
+                shareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
+                        intent.putExtra(Intent.EXTRA_TEXT, "https://www.themoviedb.org/list/" + getIntent().getIntExtra("list_id", 5));
+                        startActivity(Intent.createChooser(intent, "Share URL"));
+                    }
+                });
                 setAdapter();
             }
 
