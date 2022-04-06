@@ -48,7 +48,7 @@ public class PersonalListActivity extends AppCompatActivity {
 
     private void setAdapter() {
         mRecyclerView = findViewById(R.id.personalListRecyclerview);
-        mAdapter = new PersonalListList(this, mListList);
+        mAdapter = new PersonalListList(this, mListList, getIntent().getStringExtra("session_id"), getIntent().getBooleanExtra("logged_in", true));
         mRecyclerView.setAdapter(mAdapter);
         int gridColumnCount = 1;
 

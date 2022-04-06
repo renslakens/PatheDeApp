@@ -342,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         if (id == R.id.lists_button) {
             Intent intent = new Intent(context, ListActivity.class);
             intent.putExtra("session_id", getIntent().getStringExtra("session_id"));
+            intent.putExtra("logged_in", getIntent().getBooleanExtra("logged_in", true));
             startActivity(intent);
             return true;
         }
