@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="AlwaysShowAction">
     <item android:id="@+id/lists_button"
-        android:icon="@drawable/favourite_icon"
         android:title="Lists"
+        app:showAsAction="never" />
+    <item android:id="@+id/language_button"
+        android:title="Change language"
+        app:showAsAction="never" />
+    <item android:id="@+id/theme_button"
+        android:title="Switch to darkmode"
         app:showAsAction="never" />
 </menu>

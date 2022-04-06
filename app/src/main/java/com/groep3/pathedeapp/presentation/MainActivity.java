@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         editsearch.setOnQueryTextListener(this);
 
         context = getApplicationContext();
+
     }
 
     @Override
@@ -341,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         //noinspection SimplifiableIfStatement
         if (id == R.id.lists_button) {
             Intent intent = new Intent(context, ListActivity.class);
+            intent.putExtra("session_id", getIntent().getStringExtra("session_id"));
             startActivity(intent);
             return true;
         }

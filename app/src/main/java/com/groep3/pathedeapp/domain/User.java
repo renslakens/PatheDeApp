@@ -13,6 +13,13 @@ public class User {
     @SerializedName("api_key")
     @Expose
     private String apiKey;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+
+    public Integer getId(){
+        return id;
+    }
 
     public String getUsername() {
         return username;

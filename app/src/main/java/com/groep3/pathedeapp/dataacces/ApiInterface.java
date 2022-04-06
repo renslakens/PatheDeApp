@@ -1,10 +1,13 @@
 package com.groep3.pathedeapp.dataacces;
 
+import com.groep3.pathedeapp.domain.List;
+import com.groep3.pathedeapp.domain.LoadedLists;
 import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.LoadedVideos;
 import com.groep3.pathedeapp.domain.Movie;
 import com.groep3.pathedeapp.domain.Rating;
+import com.groep3.pathedeapp.domain.User;
 import com.groep3.pathedeapp.domain.UserAuthenticate;
 
 import retrofit2.Call;
@@ -89,15 +92,6 @@ public interface ApiInterface {
     Call<UserAuthenticate> newGuestSession(
             @Query("api_key") String apiKey
     );
-//
-//    @POST ("movie/{movie_id}/rating")
-//    Call<Rating> rateMovie(
-//            @Path("movie_id") Integer id,
-//            @Query("api_key") String apiKey,
-//            @Body Rating rating,
-//            @Header("json") String header
-//    );
-
 
     @POST("movie/{movie_id}/rating")
     @FormUrlEncoded
@@ -110,5 +104,20 @@ public interface ApiInterface {
             @Field("value") Number rating
 
     );
+
+    @GET("account")
+    Call<User> getAccount(
+            @Query("api_key") String key,
+            @Query("session_id") String session
+    );
+
+
+    @GET("account/{account_id}/lists")
+    Call<LoadedLists> getLists(
+            @Path("account_id") Integer accountId,
+            @Query("api_key") String key,
+            @Query("session_id") String session
+    );
+
 
 }
