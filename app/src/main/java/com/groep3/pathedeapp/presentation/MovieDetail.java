@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +36,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -43,7 +46,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MovieDetail extends AppCompatActivity {
+public class MovieDetail extends AppCompatActivity implements FilterOption.OnInputListener{
     private String TAG = MovieDetail.class.getSimpleName();
     private Movie movie;
     private final LinkedList<Review> mReviewList = new LinkedList<>();
@@ -58,6 +61,8 @@ public class MovieDetail extends AppCompatActivity {
     private String trailerLink;
     private String sessionId = null;
     private String guestSessionId = null;
+    private Number rating;
+    private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
 
     @Override
@@ -98,7 +103,6 @@ public class MovieDetail extends AppCompatActivity {
         Button trailer = (Button) findViewById(R.id.detail_trailer);
         ImageButton rateMovie = (ImageButton) findViewById(R.id.detail_favorite_button);
 
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         Call<Movie> call = apiInterface.getMovie(Integer.parseInt(getIntent().getStringExtra("movieId")), "11db3143a380ada0de96fe9028cbc905");
 
@@ -133,40 +137,19 @@ public class MovieDetail extends AppCompatActivity {
             }
         });
 
-        if (getIntent().getBooleanExtra("logged_in", true)){
+        if (getIntent().getBooleanExtra("logged_in", true)) {
             sessionId = getIntent().getStringExtra("session_id");
-        }else{
+        } else {
             guestSessionId = getIntent().getStringExtra("session_id");
         }
 
         rateMovie.setOnClickListener(new View.OnClickListener() {
-            Number number = 8.5;
+
             @Override
             public void onClick(View view) {
+                DialogFragment newFragment = new FilterOption(4);
+                newFragment.show(getSupportFragmentManager(), TAG);
 
-
-
-                Call<Rating> ratingCall = apiInterface.rateMovie(movie.getId(), "11db3143a380ada0de96fe9028cbc905", guestSessionId, sessionId ,number);
-
-                ratingCall.enqueue(new Callback<Rating>() {
-                    @Override
-                    public void onResponse(Call<Rating> call, Response<Rating> response) {
-                        if(response.isSuccessful()) {
-                            Log.d("Rating successful", response.body().toString() + response.message());
-                        } else {
-                            try {
-                                Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Rating> call, Throwable t) {
-
-                    }
-                });
             }
         });
 
@@ -291,5 +274,38 @@ public class MovieDetail extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void sendInput(String input) {
+
+            rating = Double.valueOf(input);
+
+            Call<Rating> ratingCall = apiInterface.rateMovie(movie.getId(), "11db3143a380ada0de96fe9028cbc905", guestSessionId, sessionId, rating);
+
+            ratingCall.enqueue(new Callback<Rating>() {
+                @Override
+                public void onResponse(Call<Rating> call, Response<Rating> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("Rating successful", response.body().toString() + response.message());
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                R.string.invalid_input_error,
+                                Toast.LENGTH_SHORT).show();
+                        try {
+                            Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Rating> call, Throwable t) {
+
+                }
+            });
+
+            Log.d(TAG, rating.toString());
+
+    }
 }
 

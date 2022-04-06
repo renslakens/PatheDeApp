@@ -191,7 +191,7 @@
             android:id="@+id/detail_favorite_button"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:src="@drawable/favorite_icon"
+            android:src="@drawable/favourite_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_bookmark_button"
             app:layout_constraintTop_toTopOf="parent" />

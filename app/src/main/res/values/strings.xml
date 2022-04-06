@@ -22,6 +22,8 @@
     <string name="rating">rating:</string>
     <string name="genre">genre:</string>
     <string name="runtime">runtime:</string>
+    <string name="confirm_rating_button">Confirm rating</string>
+    <string name="invalid_input_error">Invalid input</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>
