@@ -217,12 +217,14 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
             public void onClick(View view) {
                 //Moet nog gecheckt worden of gebruiker is ingelogd met session id of niet. Kan alleen lijst aangemaakt worden met login session id.
                 UserAuthenticate guestSession = new UserAuthenticate();
-                if (LoginActivity.SESSION_ID == guestSession.getGuestSessionID()) {
+                if (getIntent().getBooleanExtra("logged_in", false)) {
+                    Intent intent = new Intent(view.getContext(), ListActivity.class);
+                    intent.putExtra("logged_in", getIntent().getBooleanExtra("logged_in", true));
+                    intent.putExtra("session_id", getIntent().getStringExtra("session_id"));
+                    view.getContext().startActivity(intent);
+                } else {
                     //Toast bericht dat er niet ingelogd is
                     Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
-                } else {
-                    Intent intent = new Intent(view.getContext(), ListActivity.class);
-                    view.getContext().startActivity(intent);
                 }
             }
         });

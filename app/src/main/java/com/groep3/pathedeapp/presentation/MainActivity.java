@@ -358,11 +358,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.lists_button) {
-            Intent intent = new Intent(context, ListActivity.class);
-            intent.putExtra("session_id", getIntent().getStringExtra("session_id"));
-            intent.putExtra("logged_in", getIntent().getBooleanExtra("logged_in", true));
-            startActivity(intent);
-            return true;
+            Boolean logged_in = getIntent().getBooleanExtra("logged_in", false);
+            if (logged_in){
+                Intent intent = new Intent(context, ListActivity.class);
+                intent.putExtra("session_id", getIntent().getStringExtra("session_id"));
+                intent.putExtra("logged_in", getIntent().getBooleanExtra("logged_in", true));
+                startActivity(intent);
+                return true;
+            }else {
+                Toast.makeText(getApplicationContext(), R.string.not_logged_in, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+
         }
 
         return super.onOptionsItemSelected(item);

@@ -47,7 +47,7 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
         public ListViewHolder(View itemView, PersonalListList adapter) {
             super(itemView);
             listTitle = itemView.findViewById(R.id.personal_item);
-            listDescription = itemView.findViewById(R.id.listDescription);
+            listDescription = itemView.findViewById(R.id.personal_item_description);
             listImage = itemView.findViewById(R.id.personal_list_image);
 
 
@@ -94,7 +94,7 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
         }
 
         holder.listTitle.setText(mCurrent.getTitle());
-//        holder.listDescription.setText(mCurrent.getOverview());
+        holder.listDescription.setText(mCurrent.getOverview());
     }
 
     @Override

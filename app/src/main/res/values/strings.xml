@@ -27,6 +27,7 @@
     <string name="general_error">Error</string>
     <string name="incorrect_login">Incorrect username and/or password</string>
     <string name="genre_filter">genre</string>
+    <string name="not_logged_in">you must be logged in to acces this page</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>

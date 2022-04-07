@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -40,6 +41,8 @@ public class PersonalListActivity extends AppCompatActivity {
 //        getAccount();
         userId = getIntent().getIntExtra("userId", 5);
         getList();
+        Button addToList = findViewById(R.id.addToListButton);
+        addToList.setVisibility(mRecyclerView.INVISIBLE);
     }
 
     //Nieuwe lijst aanmaken met onClick

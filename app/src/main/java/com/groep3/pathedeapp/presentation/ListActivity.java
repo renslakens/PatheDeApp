@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -36,6 +37,8 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         getAccount();
         getLists();
+        Button createList = findViewById(R.id.newListButton);
+        createList.setVisibility(mRecyclerView.INVISIBLE);
     }
 
     //Nieuwe lijst aanmaken met onClick
@@ -60,15 +63,8 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 User user = response.body();
-                Log.d("test", String.valueOf(user.getId()));
+                Log.d("test", String.valueOf(response));
                 userId = user.getId();
-//                try {
-//                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                mListList.addAll(lists.getLists());
-//                setAdapter();
             }
 
             @Override
@@ -89,18 +85,14 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(Call<LoadedLists> call, Response<LoadedLists> response) {
                 LoadedLists lists = response.body();
                 Log.d("test", response.body().toString());
-//                try {
-//                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+
                 mListList.addAll(lists.getLists());
                 setAdapter();
             }
 
             @Override
             public void onFailure(Call<LoadedLists> call, Throwable t) {
-//                Log.d("test", String.valueOf(t));
+
             }
         });
 
