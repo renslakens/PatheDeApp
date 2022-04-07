@@ -23,7 +23,6 @@ import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
 import com.groep3.pathedeapp.domain.Genre;
-import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.LoadedReviews;
 import com.groep3.pathedeapp.domain.LoadedVideos;
 import com.groep3.pathedeapp.domain.Movie;
@@ -33,11 +32,7 @@ import com.groep3.pathedeapp.domain.UserAuthenticate;
 import com.groep3.pathedeapp.domain.Video;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -46,8 +41,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MovieDetail extends AppCompatActivity implements FilterOption.OnInputListener {
-    private String TAG = MovieDetail.class.getSimpleName();
+public class MovieDetailActivity extends AppCompatActivity implements FilterOption.OnInputListener {
+    private String TAG = MovieDetailActivity.class.getSimpleName();
     private Movie movie;
     private final LinkedList<Review> mReviewList = new LinkedList<>();
     private RecyclerView mRecyclerView;
@@ -68,7 +63,7 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_detail);
+        setContentView(R.layout.activity_movie_detail);
         setAdapter();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

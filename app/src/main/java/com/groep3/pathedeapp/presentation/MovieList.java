@@ -72,7 +72,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
 
             @Override
             public void onClick(View view) {
-                Intent moviePage = new Intent(context, MovieDetail.class);
+                Intent moviePage = new Intent(context, MovieDetailActivity.class);
                 moviePage.putExtra("movieId", mCurrent.getId().toString());
                 moviePage.putExtra("session_id", session_id);
                 moviePage.putExtra("logged_in", loggedIn);

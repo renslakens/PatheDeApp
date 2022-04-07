@@ -19,7 +19,7 @@
             android:name=".presentation.ListCreateActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.MovieDetail"
+            android:name=".presentation.MovieDetailActivity"
             android:exported="false" />
         <activity android:name=".presentation.PersonalListActivity"
             android:exported="false"/>

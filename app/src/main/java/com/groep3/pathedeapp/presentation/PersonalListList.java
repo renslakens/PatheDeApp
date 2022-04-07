@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.groep3.pathedeapp.R;
 import com.groep3.pathedeapp.dataacces.ApiClient;
 import com.groep3.pathedeapp.dataacces.ApiInterface;
-import com.groep3.pathedeapp.domain.List;
 import com.groep3.pathedeapp.domain.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -77,7 +76,7 @@ public class PersonalListList extends RecyclerView.Adapter<PersonalListList.List
 
             @Override
             public void onClick(View view) {
-                Intent moviePage = new Intent(context, MovieDetail.class);
+                Intent moviePage = new Intent(context, MovieDetailActivity.class);
                 moviePage.putExtra("movieId", movieId.toString());
                 moviePage.putExtra("session_id", sessionId);
                 moviePage.putExtra("logged_in", loggedIn);
