@@ -33,12 +33,12 @@ public class PersonalListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
     private Integer userId = 5;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_list);
-//        getAccount();
         userId = getIntent().getIntExtra("userId", 5);
         getList();
         Button addToList = findViewById(R.id.addToListButton);
@@ -69,12 +69,8 @@ public class PersonalListActivity extends AppCompatActivity {
         listCall.enqueue(new Callback<List>() {
             @Override
             public void onResponse(Call<List> call, Response<List> response) {
-                //                Log.d("test", response.body().toString());
-
-                    Log.d("Error occurred", "failure " + response.headers() + response.raw());
-
+                Log.d(TAG, "failure " + response.headers() + response.raw());
                 List lists = response.body();
-
                 mListList.addAll(lists.getItems());
                 listName.setText(lists.getName());
                 shareButton.setOnClickListener(new View.OnClickListener() {

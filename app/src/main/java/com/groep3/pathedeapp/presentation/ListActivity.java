@@ -30,6 +30,7 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
     private Integer userId = 5;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +85,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoadedLists> call, Response<LoadedLists> response) {
                 LoadedLists lists = response.body();
-                Log.d("test", response.body().toString());
+                Log.d(TAG, response.body().toString());
 
                 mListList.addAll(lists.getLists());
                 setAdapter();

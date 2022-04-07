@@ -18,6 +18,7 @@ public class ReviewList extends RecyclerView.Adapter<ReviewList.ReviewViewHolder
     private LinkedList<Review> mReviewList;
     private LayoutInflater mInflater;
     private Context context;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     public ReviewList(Context context, LinkedList<Review> reviewList) {
         mInflater = LayoutInflater.from(context);

@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
-public class PersonalListList extends RecyclerView.Adapter<PersonalListList.ListViewHolder>{
+public class PersonalListList extends RecyclerView.Adapter<PersonalListList.ListViewHolder> {
     private LinkedList<Movie> mPersonalListList;
     private LayoutInflater mInflater;
     private Context context;

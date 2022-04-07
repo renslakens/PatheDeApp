@@ -24,6 +24,7 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
     private Context context;
     private String session_id;
     private Boolean loggedIn;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     public MovieList(Context context, LinkedList<Movie> movieList, String session_id, Boolean loggedIn) {
         mInflater = LayoutInflater.from(context);
@@ -62,8 +63,6 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
         View mItemView = mInflater.inflate(R.layout.movie_list_item, parent, false);
         return new MovieViewHolder(mItemView, this);
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull MovieList.MovieViewHolder holder, int position) {

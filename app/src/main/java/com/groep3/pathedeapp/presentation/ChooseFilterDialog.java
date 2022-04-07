@@ -16,6 +16,7 @@ import com.groep3.pathedeapp.R;
 
 public class ChooseFilterDialog extends DialogFragment implements FilterOption.OnInputListener {
     private Integer mode;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     public ChooseFilterDialog(Integer mode) {
         this.mode = mode;
@@ -131,7 +132,7 @@ public class ChooseFilterDialog extends DialogFragment implements FilterOption.O
         try {
             onInputListenerDialog = (ChooseFilterDialog.OnInputListenerDialog) getActivity();
         } catch (ClassCastException e) {
-            Log.e("gamermoment", "onAttach: " + e.getMessage());
+            Log.e(TAG, "onAttach: " + e.getMessage());
         }
     }
 

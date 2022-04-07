@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.groep3.pathedeapp.R;
 
 public class SplashActivity extends AppCompatActivity {
+    private final String TAG = MainActivity.class.getSimpleName();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

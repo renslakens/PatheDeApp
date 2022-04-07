@@ -28,6 +28,12 @@
     <string name="incorrect_login">Incorrect username and/or password</string>
     <string name="genre_filter">genre</string>
     <string name="not_logged_in">you must be logged in to acces this page</string>
+    <string name="number_smaller_than">Number must be smaller than 11</string>
+    <string name="language_contains_numbers">Language cannot contain numbers</string>
+    <string name="genre_contains_numbers">Genre cannot contain numbers</string>
+    <string name="logged_in">Successfully logged in as guest</string>
+    <string name="could_not_find_movies">Could not find any movies</string>
+    <string name="no_trailers">Movie does not have any trailers</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>

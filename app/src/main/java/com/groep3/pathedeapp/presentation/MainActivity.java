@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Log the start of the onCreate() method.
-        Log.d(TAG, "-------");
-        Log.d(TAG, "onCreate");
 
         super.onCreate(savedInstanceState);
 
@@ -196,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 mSwipeRefreshLayout.setRefreshing(false);
                 mAdapter.setMovieList(mMovieList);
                 if (mMovieList.isEmpty()) {
-                    Toast.makeText(context, "Could not find any movies", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.could_not_find_movies, Toast.LENGTH_SHORT).show();
                 }
             }
 

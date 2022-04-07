@@ -40,6 +40,7 @@ public class ListList extends RecyclerView.Adapter<ListList.ListViewHolder> {
     private Integer userId;
     private String sessionId;
     private boolean loggedIn;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     public ListList(Context context, LinkedList<List> listList, Integer userId, String sessionId, Boolean loggedIn) {
         mInflater = LayoutInflater.from(context);

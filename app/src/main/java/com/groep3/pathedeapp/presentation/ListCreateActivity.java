@@ -20,6 +20,7 @@ import retrofit2.Response;
 public class ListCreateActivity extends AppCompatActivity {
     private TextView mListName;
     private TextView mListDescription;
+    private final String TAG = MainActivity.class.getSimpleName();
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
     @Override
@@ -44,15 +45,7 @@ public class ListCreateActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List> call, Response<List> response) {
                 List list = response.body();
-                Log.d("test", String.valueOf(list.getId()));
-//                userId = list.getId();
-//                try {
-//                    Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                mListList.addAll(lists.getLists());
-//                setAdapter();
+                Log.d(TAG, String.valueOf(list.getId()));
             }
 
             @Override

@@ -20,6 +20,7 @@ import com.groep3.pathedeapp.R;
 
 public class FilterOption extends DialogFragment {
     private Integer mode;
+    private final String TAG = MainActivity.class.getSimpleName();
     private String input;
 
     public FilterOption(Integer mode) {
@@ -70,11 +71,11 @@ public class FilterOption extends DialogFragment {
                 break;
 
         }
-//        Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+
         cancelFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("test", "onClick: closing dialog");
+                Log.d(TAG, "onClick: closing dialog");
                 getDialog().dismiss();
             }
         });
@@ -93,16 +94,16 @@ public class FilterOption extends DialogFragment {
                         break;
 
                     case 2:
-                        if (Integer.parseInt(input) > 10){
-                            Toast.makeText(getContext(), "Number must be smaller than 11", Toast.LENGTH_SHORT).show();
+                        if (Integer.parseInt(input) > 10) {
+                            Toast.makeText(getContext(), R.string.number_smaller_than, Toast.LENGTH_SHORT).show();
                             break;
-                        }else {
+                        } else {
                             sendInput();
                         }
                     case 3:
-                        if (input.matches(".*\\d.*")){
-                            Toast.makeText(getContext(), "Language cannot contain numbers", Toast.LENGTH_SHORT).show();
-                        }else {
+                        if (input.matches(".*\\d.*")) {
+                            Toast.makeText(getContext(), R.string.language_contains_numbers, Toast.LENGTH_SHORT).show();
+                        } else {
                             sendInput();
                         }
                         break;
@@ -110,16 +111,13 @@ public class FilterOption extends DialogFragment {
                         sendInput();
                         break;
                     case 5:
-                        if (input.matches(".*\\d.*")){
-                            Toast.makeText(getContext(), "Genre cannot contain numbers", Toast.LENGTH_SHORT).show();
-                        }else {
+                        if (input.matches(".*\\d.*")) {
+                            Toast.makeText(getContext(), R.string.genre_contains_numbers, Toast.LENGTH_SHORT).show();
+                        } else {
                             sendInput();
                         }
                         break;
                 }
-
-
-
 
 
             }
@@ -134,11 +132,11 @@ public class FilterOption extends DialogFragment {
         try {
             onInputListener = (OnInputListener) getActivity();
         } catch (ClassCastException e) {
-            Log.e("gamermoment", "onAttach: " + e.getMessage());
+            Log.e(TAG, "onAttach: " + e.getMessage());
         }
     }
 
-    private void sendInput(){
+    private void sendInput() {
         onInputListener.sendInput(input);
         getDialog().dismiss();
     }

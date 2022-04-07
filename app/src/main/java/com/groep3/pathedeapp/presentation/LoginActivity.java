@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private final String apiKey = "11db3143a380ada0de96fe9028cbc905";
     public static String SESSION_ID = "";
     public static String GUEST_SESSION_ID = "";
+    private final String TAG = MainActivity.class.getSimpleName();
 
     private UserAuthenticate requestToken = new UserAuthenticate();
     private UserAuthenticate requestTokenOnLogin = new UserAuthenticate();
@@ -87,19 +88,19 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<UserAuthenticate>() {
                     @Override
                     public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             requestTokenOnLogin = response.body();
                             Log.d("Login successful", response.body().toString());
                             getSessionID();
                         } else {
                             Toast.makeText(getApplicationContext(), R.string.incorrect_login, Toast.LENGTH_SHORT).show();
-                            Log.d("Error occurred", "failure " + response.headers());
+                            Log.d(TAG, "failure " + response.headers());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                        Log.d("Error occurred", t.toString());
+                        Log.d(TAG, t.toString());
                     }
                 });
             }
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserAuthenticate>() {
             @Override
             public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     UserAuthenticate session = response.body();
                     SESSION_ID = session.getSessionID();
                     Log.d("Created Session", SESSION_ID);
@@ -126,16 +127,16 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("session_id", SESSION_ID);
                     intent.putExtra("logged_in", true);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.logged_in, Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("Error occurred", "failure " + response.headers());
+                    Log.d(TAG, "failure " + response.headers());
                 }
 
             }
 
             @Override
             public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                Log.d("Error occurred", t.toString());
+                Log.d(TAG, t.toString());
             }
         });
     }
@@ -147,12 +148,12 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserAuthenticate>() {
             @Override
             public void onResponse(Call<UserAuthenticate> call, Response<UserAuthenticate> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     UserAuthenticate guestSession = response.body();
                     SESSION_ID = guestSession.getGuestSessionID();
                     GUEST_SESSION_ID = SESSION_ID;
                     Log.d("Created Session", SESSION_ID);
-                    Toast.makeText(getApplicationContext(), "Successfully logged in as guest", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.logged_in, Toast.LENGTH_SHORT).show();
                     Log.d("Login", "Signed in as guest");
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     intent.putExtra("request_token", guestSession.getRequestToken());
@@ -160,13 +161,13 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("logged_in", false);
                     view.getContext().startActivity(intent);
                 } else {
-                    Log.d("Error occurred", "failure " + response.headers());
+                    Log.d(TAG, "failure " + response.headers());
                 }
             }
 
             @Override
             public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                Log.d("Error occurred", t.toString());
+                Log.d(TAG, t.toString());
             }
         });
 

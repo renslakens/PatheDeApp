@@ -46,7 +46,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MovieDetail extends AppCompatActivity implements FilterOption.OnInputListener{
+public class MovieDetail extends AppCompatActivity implements FilterOption.OnInputListener {
     private String TAG = MovieDetail.class.getSimpleName();
     private Movie movie;
     private final LinkedList<Review> mReviewList = new LinkedList<>();
@@ -173,7 +173,7 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
 //                        https://www.youtube.com/watch?v=
                         trailerLink = "vnd.youtube://" + videos.get(i).getKey();
                         if (type.equals("Trailer") && site.equals("YouTube")) {
-                            Log.d("current trailer", trailerLink.toString());
+                            Log.d(TAG, trailerLink.toString());
                             break;
                         }
                     }
@@ -196,7 +196,7 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(trailerLink));
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Movie does not have any trailers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.no_trailers, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -224,7 +224,7 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
                     view.getContext().startActivity(intent);
                 } else {
                     //Toast bericht dat er niet ingelogd is
-                    Toast.makeText(getApplicationContext(), "You're not logged in", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.not_logged_in, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -260,7 +260,7 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
                 LoadedReviews reviews = response.body();
                 totalPages = reviews.getTotalPages();
                 mReviewList.addAll(reviews.getResults());
-                Log.d("reviewListreviews", response.toString());
+                Log.d(TAG, response.toString());
 
                 for (int i = 0; i < mReviewList.size(); i++) {
                     Review review = mReviewList.get(i);
@@ -279,34 +279,34 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
     @Override
     public void sendInput(String input) {
 
-            rating = Double.valueOf(input);
+        rating = Double.valueOf(input);
 
-            Call<Rating> ratingCall = apiInterface.rateMovie(movie.getId(), "11db3143a380ada0de96fe9028cbc905", guestSessionId, sessionId, rating);
+        Call<Rating> ratingCall = apiInterface.rateMovie(movie.getId(), "11db3143a380ada0de96fe9028cbc905", guestSessionId, sessionId, rating);
 
-            ratingCall.enqueue(new Callback<Rating>() {
-                @Override
-                public void onResponse(Call<Rating> call, Response<Rating> response) {
-                    if (response.isSuccessful()) {
-                        Log.d("Rating successful", response.body().toString() + response.message());
-                    } else {
-                        Toast.makeText(getApplicationContext(),
-                                R.string.invalid_input_error,
-                                Toast.LENGTH_SHORT).show();
-                        try {
-                            Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+        ratingCall.enqueue(new Callback<Rating>() {
+            @Override
+            public void onResponse(Call<Rating> call, Response<Rating> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Rating successful", response.body().toString() + response.message());
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            R.string.invalid_input_error,
+                            Toast.LENGTH_SHORT).show();
+                    try {
+                        Log.d("Error occurred", "failure " + response.headers() + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
+            }
 
-                @Override
-                public void onFailure(Call<Rating> call, Throwable t) {
+            @Override
+            public void onFailure(Call<Rating> call, Throwable t) {
 
-                }
-            });
+            }
+        });
 
-            Log.d(TAG, rating.toString());
+        Log.d(TAG, rating.toString());
 
     }
 
