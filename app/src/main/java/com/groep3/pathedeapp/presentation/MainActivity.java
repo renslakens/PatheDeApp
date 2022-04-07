@@ -195,6 +195,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Log.d(TAG, "Movies = " + mMovieList);
                 mSwipeRefreshLayout.setRefreshing(false);
                 mAdapter.setMovieList(mMovieList);
+                if (mMovieList.isEmpty()) {
+                    Toast.makeText(context, "Could not find any movies", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -271,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 break;
             case 5:
                 for (int i = 0; i < genreSize; i++) {
-                    if (input.toLowerCase().equals(genres.get(i).getName().toLowerCase(Locale.ROOT))){
+                    if (input.toLowerCase().equals(genres.get(i).getName().toLowerCase(Locale.ROOT))) {
                         genre = genres.get(i).getId().toString();
                         break;
                     }
@@ -359,26 +362,25 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         //noinspection SimplifiableIfStatement
         if (id == R.id.lists_button) {
             Boolean logged_in = getIntent().getBooleanExtra("logged_in", false);
-            if (logged_in){
+            if (logged_in) {
                 Intent intent = new Intent(context, ListActivity.class);
                 intent.putExtra("session_id", getIntent().getStringExtra("session_id"));
                 intent.putExtra("logged_in", getIntent().getBooleanExtra("logged_in", true));
                 startActivity(intent);
                 return true;
-            }else {
+            } else {
                 Toast.makeText(getApplicationContext(), R.string.not_logged_in, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
 
-        }else if (id == R.id.log_out){
+        } else if (id == R.id.log_out) {
             Intent intent = new Intent(context, LoginActivity.class);
             startActivity(intent);
-        }
-        else if (id == R.id.theme_button){
-            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+        } else if (id == R.id.theme_button) {
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }else {
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
             }
@@ -412,6 +414,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         });
     }
+
     @Override
     public void onBackPressed() {
     }
