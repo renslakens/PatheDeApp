@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Theme.PatheDeApp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    style="@style/Theme.PatheDeApp"
     android:orientation="vertical">
-
 
 
     <Button
@@ -68,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@color/cardview_light_background"
-            android:text="clear filters" />
+            android:text="@string/clear_filters" />
 
         <Button
             android:id="@+id/add_button_filter_dialog"
@@ -76,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@color/cardview_light_background"
-            android:text="done" />
+            android:text="@string/done" />
 
     </LinearLayout>
 </LinearLayout>

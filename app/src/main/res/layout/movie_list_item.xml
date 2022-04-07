@@ -35,7 +35,7 @@
                 android:layout_toStartOf="@+id/rating"
                 android:layout_toEndOf="@+id/image"
                 android:padding="8dp"
-                android:text="insert movie"
+                android:text="@string/insert_movie"
                 tools:layout_constrainedWidth="true"
                 tools:layout_constraintHorizontal_bias="0.0" />
 
@@ -46,7 +46,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:padding="8dp"
-                android:text="78%" />
+                android:text="@string/score" />
 
             <TextView
                 android:id="@+id/info"
@@ -55,7 +55,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:padding="8dp"
-                android:text="info >" />
+                android:text="@string/info" />
 
             <TextView
                 android:id="@+id/date"
@@ -65,7 +65,7 @@
                 android:layout_marginStart="1dp"
                 android:layout_toEndOf="@+id/image"
                 android:padding="8dp"
-                android:text="23 augustus 2021" />
+                android:text="@string/date" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
