@@ -18,7 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListCreateActivity extends AppCompatActivity {
-    private TextView mListTitle;
     private TextView mListName;
     private TextView mListDescription;
     private ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -28,6 +27,8 @@ public class ListCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_create);
 
+        mListName.findViewById(R.id.nameList);
+        mListDescription.findViewById(R.id.descriptionList);
     }
 
     public void createList(View view) {
