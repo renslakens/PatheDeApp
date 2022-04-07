@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    style="@style/Theme.PatheDeApp"
     android:orientation="vertical">
 
 
@@ -14,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/hint_vote_count" />
+        android:text="@string/hint_vote_count" />
 
     <Button
         android:id="@+id/release_year"
@@ -24,7 +25,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/hint_year" />
+        android:text="@string/hint_year" />
 
     <Button
         android:id="@+id/vote_average"
@@ -34,7 +35,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/hint_vote_average" />
+        android:text="@string/hint_vote_average" />
 
     <Button
         android:id="@+id/original_language"
@@ -44,7 +45,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/hint_original_language" />
+        android:text="@string/hint_original_language" />
 
     <Button
         android:id="@+id/genre_filter"
@@ -54,7 +55,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/genre_filter" />
+        android:text="@string/genre_filter" />
 
     <LinearLayout
         android:layout_width="wrap_content"

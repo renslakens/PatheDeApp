@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pathe">#FFC526</color>
-    <color name="aqua">#49FBF8</color>
+    <color name="pathe_light">#FFCE38</color>
+    <color name="aqua">#FF7147</color>
     <color name="pastel_green">#1CC794</color>
 </resources>
