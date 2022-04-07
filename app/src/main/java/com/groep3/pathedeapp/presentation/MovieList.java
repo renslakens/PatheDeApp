@@ -63,6 +63,8 @@ public class MovieList extends RecyclerView.Adapter<MovieList.MovieViewHolder> {
         return new MovieViewHolder(mItemView, this);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull MovieList.MovieViewHolder holder, int position) {
         Movie mCurrent = mMovieList.get(position);

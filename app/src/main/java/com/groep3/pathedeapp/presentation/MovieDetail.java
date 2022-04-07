@@ -309,5 +309,7 @@ public class MovieDetail extends AppCompatActivity implements FilterOption.OnInp
             Log.d(TAG, rating.toString());
 
     }
+
+
 }
 

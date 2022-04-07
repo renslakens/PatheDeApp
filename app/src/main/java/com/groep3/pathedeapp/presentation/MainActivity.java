@@ -2,7 +2,6 @@ package com.groep3.pathedeapp.presentation;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,7 +30,6 @@ import com.groep3.pathedeapp.domain.LoadedMovies;
 import com.groep3.pathedeapp.domain.Movie;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -373,8 +371,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
 
 
-        }else if (id == R.id.language_button){
-
+        }else if (id == R.id.log_out){
+            Intent intent = new Intent(context, LoginActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.theme_button){
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
@@ -412,5 +411,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
     }
 }
