@@ -3,12 +3,14 @@ package com.groep3.pathedeapp.presentation;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ import com.groep3.pathedeapp.R;
 
 public class FilterOption extends DialogFragment {
     private Integer mode;
+    private String input;
 
     public FilterOption(Integer mode) {
         this.mode = mode;
@@ -67,7 +70,7 @@ public class FilterOption extends DialogFragment {
                 break;
 
         }
-
+//        Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
         cancelFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +83,44 @@ public class FilterOption extends DialogFragment {
         addFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                input = inputBox.getText().toString();
+                switch (mode) {
+                    case 0:
+                        sendInput();
+                        break;
+                    case 1:
+                        sendInput();
+                        break;
 
-                String input = inputBox.getText().toString();
+                    case 2:
+                        if (Integer.parseInt(input) > 10){
+                            Toast.makeText(getContext(), "Number must be smaller than 11", Toast.LENGTH_SHORT).show();
+                            break;
+                        }else {
+                            sendInput();
+                        }
+                    case 3:
+                        if (input.matches(".*\\d.*")){
+                            Toast.makeText(getContext(), "Language cannot contain numbers", Toast.LENGTH_SHORT).show();
+                        }else {
+                            sendInput();
+                        }
+                        break;
+                    case 4:
+                        sendInput();
+                        break;
+                    case 5:
+                        if (input.matches(".*\\d.*")){
+                            Toast.makeText(getContext(), "Genre cannot contain numbers", Toast.LENGTH_SHORT).show();
+                        }else {
+                            sendInput();
+                        }
+                        break;
+                }
 
-                onInputListener.sendInput(input);
-                getDialog().dismiss();
+
+
+
 
             }
         });
@@ -100,6 +136,11 @@ public class FilterOption extends DialogFragment {
         } catch (ClassCastException e) {
             Log.e("gamermoment", "onAttach: " + e.getMessage());
         }
+    }
+
+    private void sendInput(){
+        onInputListener.sendInput(input);
+        getDialog().dismiss();
     }
 
 }
