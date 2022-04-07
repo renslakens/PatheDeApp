@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PatheDeApp</string>
+    <string name="app_name" translatable="false">PatheDeApp</string>
     <string name="enter_as_guest_button">Enter as guest</string>
     <string name="button_register">Register</string>
     <string name="button_login">Login</string>
@@ -11,7 +11,7 @@
     <string name="hint_year">release year</string>
     <string name="hint_vote_average">vote average</string>
     <string name="hint_original_language">original language</string>
-    <string name="list_description">List description</string>
+    <string name="list_description" translatable="false">List description</string>
     <string name="list_title">List</string>
     <string name="lists_title">Lists</string>
     <string name="list_create">Create List</string>
@@ -35,7 +35,7 @@
     <string name="could_not_find_movies">Could not find any movies</string>
     <string name="no_trailers">Movie does not have any trailers</string>
     <string name="clear_filters">clear filters</string>
-    <string name="done">done</string>
+    <string name="done">confirm</string>
     <string name="year">year</string>
     <string name="add_filter">add filter</string>
     <string name="cancel">cancel</string>
@@ -44,9 +44,12 @@
     <string name="description">description</string>
     <string name="reviews">Reviews:</string>
     <string name="insert_movie">insert movie</string>
-    <string name="score">78%</string>
+    <string name="score" translatable="false">78%</string>
     <string name="info"><![CDATA[info >]]></string>
-    <string name="date">23 augustus 2021</string>
+    <string name="date" translatable="false">23 augustus 2021</string>
+    <string name="lists">Lists</string>
+    <string name="log_out">Log out</string>
+    <string name="switch_to_darkmode">Switch to darkmode</string>
     <string-array name="spinner_sort">
         <item>popularity</item>
         <item>release date</item>

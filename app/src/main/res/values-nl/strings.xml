@@ -1,31 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PatheDeApp</string>
-    <string name="enter_as_guest_button">Kom binnen als gast</string>
-    <string name="button_register">Schrijf je in</string>
+    <string name="enter_as_guest_button">Log in als gast</string>
+    <string name="button_register">Meld je aan</string>
     <string name="button_login">Log in</string>
     <string name="hint_password">Wachtwoord</string>
     <string name="hint_username">Gebruikersnaam</string>
-    <string name="popularity">populariteit</string>
-    <string name="release_date">publicatiedatum</string>
-    <string name="revenue">omzet</string>
-    <string name="primary_release_date">primaire_publicatiedatum</string>
-    <string name="original_title">orginele titel</string>
-    <string name="intro_text">Hallo, Wekkom terug</string>
-    <string name="sign_in_text">Meld je aan door te gaan</string>
-    <string name="hint_year">jaar</string>
+    <string name="intro_text">Hallo, Welkom terug</string>
+    <string name="sign_in_text">Meld je aan om door te gaan</string>
+    <string name="hint_year">uitkomst jaar</string>
     <string name="list_name">Lijst naam</string>
     <string name="list_create">Maak Lijst aan</string>
     <string name="button_new_list">Maak nieuwe Lijst</string>
     <string name="button_add_to_list">Voeg Film toe</string>
-    <string name="vote_average">stem gemiddelde</string>
-    <string name="vote_count">totaal stemmen</string>
-    <string name="asc">oplopend</string>
-    <string name="desc">aflopend</string>
-    <string name="filter_picker">filter kiezer</string>
-    <string name="hint_vote_count" translatable="false">totaal stemmen</string>
+    <string name="hint_vote_count" translatable="false">totaal aantal stemmen</string>
     <string name="hint_vote_average">stem gemiddelde</string>
     <string name="hint_original_language">orginele taal</string>
-    <string name="list_description" translatable="false">Lijst beschrijving</string>
     <string name="list_make_button">Maak Lijst</string>
+    <string name="list_title">Lijst</string>
+    <string name="lists_title">Lijsten</string>
+    <string name="rating">Score:</string>
+    <string name="genre">Genre:</string>
+    <string name="runtime">Looptijd:</string>
+    <string name="confirm_rating_button">Bevestig score</string>
+    <string name="invalid_input_error">Ongeldige invoer</string>
+    <string name="general_error">Error</string>
+    <string name="incorrect_login">Incorrecte gebruikersnaam en/of wachtwoord</string>
+    <string name="genre_filter">genre</string>
+    <string name="not_logged_in">Je moet ingelogd zijn om naar deze pagina te gaan</string>
+    <string name="number_smaller_than">Getal moet kleiner zijn dan 11</string>
+    <string name="language_contains_numbers">Taal mag geen nummers hebben</string>
+    <string name="genre_contains_numbers">Genre mag geen nummers hebben</string>
+    <string name="logged_in">Succesvol ingelogd als gast</string>
+    <string name="could_not_find_movies">Kon geen films vinden</string>
+    <string name="no_trailers">Film heeft geen trailers</string>
+    <string name="clear_filters">filters resetten</string>
+    <string name="done">bevestig</string>
+    <string name="year">jaar</string>
+    <string name="add_filter">voeg filter toe</string>
+    <string name="cancel">annuleer</string>
+    <string name="film">movie</string>
+    <string name="watch_trailer">Bekijk trailer</string>
+    <string name="description">beschrijving</string>
+    <string name="reviews">Reviews:</string>
+    <string name="insert_movie">voeg film in</string>
+    <string name="info"><![CDATA[info >]]></string>
+    <string name="lists">Lijsten</string>
+    <string name="log_out">Log uit</string>
+    <string name="switch_to_darkmode">Verander naar donkere modus</string>
 </resources>
