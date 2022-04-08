@@ -129,6 +129,7 @@ public class MovieDetailActivity extends AppCompatActivity implements FilterOpti
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
+                Log.e(TAG, t.toString());
             }
         });
 
@@ -177,7 +178,7 @@ public class MovieDetailActivity extends AppCompatActivity implements FilterOpti
 
             @Override
             public void onFailure(Call<LoadedVideos> call, Throwable t) {
-
+                Log.e(TAG, t.toString());
             }
         });
 
@@ -267,6 +268,7 @@ public class MovieDetailActivity extends AppCompatActivity implements FilterOpti
 
             @Override
             public void onFailure(Call<LoadedReviews> call, Throwable t) {
+                Log.e(TAG, t.toString());
             }
         });
     }
@@ -297,7 +299,7 @@ public class MovieDetailActivity extends AppCompatActivity implements FilterOpti
 
             @Override
             public void onFailure(Call<Rating> call, Throwable t) {
-
+                Log.e(TAG, t.toString());
             }
         });
 

@@ -409,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(Call<LoadedGenres> call, Throwable t) {
-
+                Log.e(TAG, t.toString());
             }
         });
     }

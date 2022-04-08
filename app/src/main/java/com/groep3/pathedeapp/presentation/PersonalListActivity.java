@@ -88,7 +88,7 @@ public class PersonalListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List> call, Throwable t) {
-
+                Log.e(TAG, t.toString());
             }
         });
 
