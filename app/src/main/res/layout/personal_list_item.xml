@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
         android:theme="@style/Theme.PatheDeApp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
