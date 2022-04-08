@@ -97,6 +97,7 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
+    //Add movie rating
     @POST("movie/{movie_id}/rating")
     @FormUrlEncoded
     Call<Rating> rateMovie(
@@ -105,9 +106,9 @@ public interface ApiInterface {
             @Query("guest_session_id") String guestId,
             @Query("session_id") String id,
             @Field("value") Number rating
-
     );
 
+    //Add new list
     @POST("list")
     @FormUrlEncoded
     Call<List> createList(
@@ -117,6 +118,7 @@ public interface ApiInterface {
             @Field("description") String description
     );
 
+    //Add movie item
     @POST("list/{list_id}/add_item")
     @FormUrlEncoded
     Call<LoadedLists> addItem(
@@ -126,12 +128,14 @@ public interface ApiInterface {
             @Field("media_id") String media_id
     );
 
+    //Get account
     @GET("account")
     Call<User> getAccount(
             @Query("api_key") String key,
             @Query("session_id") String session
     );
 
+    //Get lists from account
     @GET("account/{account_id}/lists")
     Call<LoadedLists> getLists(
             @Path("account_id") Integer accountId,
@@ -139,6 +143,7 @@ public interface ApiInterface {
             @Query("session_id") String session
     );
 
+    //Get specific list from account
     @GET("list/{list_id}")
     Call<List> getList(
             @Path("list_id") Integer id,
