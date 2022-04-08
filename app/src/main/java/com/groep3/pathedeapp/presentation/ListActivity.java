@@ -70,7 +70,7 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                Log.e(TAG, t.toString());
             }
         });
     }
@@ -93,7 +93,7 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoadedLists> call, Throwable t) {
-
+                Log.e(TAG, t.toString());
             }
         });
 

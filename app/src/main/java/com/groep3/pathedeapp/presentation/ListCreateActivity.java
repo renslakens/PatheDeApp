@@ -46,6 +46,7 @@ public class ListCreateActivity extends AppCompatActivity {
                     public void onResponse(Call<List> call, Response<List> response) {
                         List list = response.body();
                         Log.d(TAG, String.valueOf(list.getId()));
+
                     }
 
                     @Override
@@ -53,7 +54,9 @@ public class ListCreateActivity extends AppCompatActivity {
                         Log.e(TAG, "Cannot create new list");
                     }
                 });
+
             }
+
         });
     }
 

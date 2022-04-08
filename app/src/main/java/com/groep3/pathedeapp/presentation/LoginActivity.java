@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                Log.d("Request Token", "Error occurred");
+                Log.e(TAG, t.toString());
             }
         });
     }
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                        Log.d(TAG, t.toString());
+                        Log.e(TAG, t.toString());
                     }
                 });
             }
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                Log.d(TAG, t.toString());
+                Log.e(TAG, t.toString());
             }
         });
     }
@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserAuthenticate> call, Throwable t) {
-                Log.d(TAG, t.toString());
+                Log.e(TAG, t.toString());
             }
         });
 
