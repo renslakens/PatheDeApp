@@ -133,11 +133,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
         if (genreSpinner.getVisibility() == mRecyclerView.GONE) {
-            setAdapter();
+            pageNumber = 1;
             mMovieList.clear();
             searchMovie(currentQuery);
         } else {
-            setAdapter();
+            pageNumber = 1;
             call = sortBy + descending;
             mMovieList.clear();
             getAllMovies(call);
@@ -212,7 +212,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mRecyclerView.stopScroll();
         pageNumber = 1;
         Log.d(TAG, s);
-        setAdapter();
         mMovieList.clear();
         searchMovie(s);
         genreSpinner.setVisibility(mRecyclerView.GONE);
@@ -227,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mRecyclerView.stopScroll();
         if (s.isEmpty()) {
             pageNumber = 1;
-            setAdapter();
             call = sortBy + descending;
             mMovieList.clear();
             s = null;
