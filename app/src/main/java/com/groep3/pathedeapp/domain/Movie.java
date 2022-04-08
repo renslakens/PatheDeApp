@@ -115,6 +115,10 @@ public class Movie {
         return voteAverage;
     }
 
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
     public Integer getRuntime(){return runtime;}
 
     @Override
