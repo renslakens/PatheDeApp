@@ -1,5 +1,6 @@
 package com.groep3.pathedeapp.presentation;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -131,11 +133,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
         if (genreSpinner.getVisibility() == mRecyclerView.GONE) {
-            setAdapter();
+            pageNumber = 1;
             mMovieList.clear();
             searchMovie(currentQuery);
         } else {
-            setAdapter();
+            pageNumber = 1;
             call = sortBy + descending;
             mMovieList.clear();
             getAllMovies(call);
@@ -210,7 +212,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mRecyclerView.stopScroll();
         pageNumber = 1;
         Log.d(TAG, s);
-        setAdapter();
         mMovieList.clear();
         searchMovie(s);
         genreSpinner.setVisibility(mRecyclerView.GONE);
@@ -225,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mRecyclerView.stopScroll();
         if (s.isEmpty()) {
             pageNumber = 1;
-            setAdapter();
             call = sortBy + descending;
             mMovieList.clear();
             s = null;
@@ -380,7 +380,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
+                // theme button string naar "Set light mode"
+                item.setTitle("Switch to light mode");
             }
         }
 
