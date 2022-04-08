@@ -1,8 +1,8 @@
 package com.groep3.pathedeapp.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class MovieTest {
 
