@@ -1,5 +1,6 @@
 package com.groep3.pathedeapp.presentation;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -380,7 +382,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
+                // theme button string naar "Set light mode"
+                item.setTitle("Switch to light mode");
             }
         }
 
