@@ -112,10 +112,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<List> createList(
             @Query("api_key") String apiKey,
-            @Query("session_id") String id
-//            @Field("name") String name,
-//            @Field("description") String description,
-//            @Field("language") String language
+            @Query("session_id") String id,
+            @Field("name") String name,
+            @Field("description") String description
     );
 
     @POST("list/{list_id}/add_item")

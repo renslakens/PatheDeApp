@@ -39,7 +39,7 @@ public class ListCreateActivity extends AppCompatActivity {
     }
 
     private void createList() {
-        Call<List> listCall = apiInterface.createList("11db3143a380ada0de96fe9028cbc905", getIntent().getStringExtra("session_id"));
+        Call<List> listCall = apiInterface.createList("11db3143a380ada0de96fe9028cbc905", getIntent().getStringExtra("session_id"), mListName.getText().toString(), mListDescription.getText().toString());
 
         listCall.enqueue(new Callback<List>() {
             @Override
