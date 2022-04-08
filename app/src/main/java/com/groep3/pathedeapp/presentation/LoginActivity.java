@@ -153,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                     SESSION_ID = guestSession.getGuestSessionID();
                     GUEST_SESSION_ID = SESSION_ID;
                     Log.d("Created Session", SESSION_ID);
-                    Toast.makeText(getApplicationContext(), R.string.logged_in, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.logged_in_guest, Toast.LENGTH_SHORT).show();
                     Log.d("Login", "Signed in as guest");
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     intent.putExtra("request_token", guestSession.getRequestToken());

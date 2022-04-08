@@ -31,7 +31,8 @@
     <string name="number_smaller_than">Number must be smaller than 11</string>
     <string name="language_contains_numbers">Language cannot contain numbers</string>
     <string name="genre_contains_numbers">Genre cannot contain numbers</string>
-    <string name="logged_in">Successfully logged in as guest</string>
+    <string name="logged_in">Successfully logged in</string>
+    <string name="logged_in_guest">Successfully logged in as guest</string>
     <string name="could_not_find_movies">Could not find any movies</string>
     <string name="no_trailers">Movie does not have any trailers</string>
     <string name="clear_filters">clear filters</string>

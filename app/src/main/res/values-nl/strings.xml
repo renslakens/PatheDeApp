@@ -30,7 +30,8 @@
     <string name="number_smaller_than">Getal moet kleiner zijn dan 11</string>
     <string name="language_contains_numbers">Taal mag geen nummers hebben</string>
     <string name="genre_contains_numbers">Genre mag geen nummers hebben</string>
-    <string name="logged_in">Succesvol ingelogd als gast</string>
+    <string name="logged_in">Succesvol ingelogd</string>
+    <string name="logged_in_guest">Succesvol ingelogd als gast</string>
     <string name="could_not_find_movies">Kon geen films vinden</string>
     <string name="no_trailers">Film heeft geen trailers</string>
     <string name="clear_filters">filters resetten</string>
