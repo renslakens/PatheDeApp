@@ -13,6 +13,7 @@ public class MovieTest {
 
         assertEquals(movie.getVoteAverage() / 2, 3.2, 0.01);
     }
+
     @Test
     public void MovieVoteAverageDividedBy2_2(){
         Movie movie = new Movie();
