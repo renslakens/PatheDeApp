@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-class MovieTest {
+public class MovieTest {
 
     @Test
     public void MovieVoteAverage_dividedBy2_1(){
